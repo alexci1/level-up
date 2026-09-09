@@ -50,16 +50,21 @@ const addButtons = document.querySelectorAll(".product-card button");
 
 addButtons.forEach(button => {
     button.addEventListener("click", () => {
+        const sesion = obtenerSesionActiva();
+
+        if (!sesion) {
+            alert("Debes iniciar sesión para agregar productos al carrito.");
+            window.location.href = "login.html";
+            return;
+        }
+
         const productCard = button.closest(".product-card");
-
         const productName = productCard.querySelector("h3").textContent;
-
         const productPrice = productCard.querySelector("p").textContent;
-
         const productImage = productCard.querySelector("img").getAttribute("src");
 
         const price = Number(
-            productPrice.replace("$","").replace(/\./g, "")
+            productPrice.replace("$", "").replace(/\./g, "")
         );
 
         const product = {
@@ -76,17 +81,32 @@ addButtons.forEach(button => {
             item => item.id === product.id
         );
 
-        if (existingProduct){
+        if (existingProduct) {
             existingProduct.cantidad++;
-        }else{
+        } else {
             cart.push(product);
         }
-
-        localStorage.setItem("cart",JSON.stringify(cart));
-
-        alert("Producto agregado al carrito");
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(`¡${productName} agregado al carrito!`);
     });
-});
+})
+
+document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", (e) => {
+        if (e.target.tagName === 'BUTTON') return;
+
+        const nombre = card.querySelector("h3").textContent;
+        const precio = card.querySelector("p").textContent;
+        const imagen = card.querySelector("img").getAttribute("src");
+        const categoria = card.dataset.category;
+
+        const productoSeleccionado = { nombre, precio, imagen, categoria };
+
+        localStorage.setItem("selected_product", JSON.stringify(productoSeleccionado));
+
+        window.location.href = "product-detail.html";
+    });
+});;
 
 
 
