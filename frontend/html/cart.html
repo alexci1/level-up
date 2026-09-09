@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEVEL UP GAMER</title>
-    <link rel="stylesheet" href="../css/style_index.css">
+    <link rel="stylesheet" href="../css/style_cart.css">
     <link rel="icon" type="image/png" href="../img/level-up.png">
 </head>
 
@@ -46,54 +46,85 @@
 
     </header>
 
-    <section class="banner">
+    <main>
 
-        <div class="banner-content">
-            <h1>LOS MEJORES PRODUCTOS GAMER</h1>
-            <p>ENCUENTRA LO QUE NECESITAS AL MEJOR PRECIO</p>
-            <a href="products.html" class="banner-button">VER PRODUCTOS</a>
-        </div>
+        <section class="cart">
+            <h1>CARRITO DE COMPRAS</h1>
+            <p class="cart-description">Revisa los productos que quieres comprar</p>
 
-    </section>
+            <div class="cart-content">
+                <div class="cart-products">
+                    <article class="cart-item">
+                        <img src="../img/png/ps5.png" alt="playstation 5">
+                        <div class="item-info">
+                            <h2>PLAYSTATION 6 SLIM 1TB</h2>
+                            <p class="item-price">
+                                $799.000
+                            </p>
+                            <div class="quantity">
+                                <button>-</button>
+                                <span>1</span>
+                                <button>+</button>
+                            </div>
+                        </div>
 
-    <section class="featured">
+                        <button class="remove-item">
+                            🗑️
+                        </button>
+                    </article>
 
-        <h2>PRODUCTOS DESTACADOS</h2>
+                    <article class="cart-item">
+                        <img src="../img/png/sony.png" alt="sony">
+                        <div class="item-info">
+                            <h2>SONY PULSE ELITE</h2>
+                            <p class="item-price">
+                                $199.990
+                            </p>
+                            <div class="quantity">
+                                <button>-</button>
+                                <span>1</span>
+                                <button>+</button>
+                            </div>
+                        </div>
 
-        <div class="product-container">
+                        <button class="remove-item">
+                            🗑️
+                        </button>
+                    </article>
+                </div>
 
-            <article class="product-card">
-                <img src="../img/png/silla.png" alt="silla cougar">
-                <h3>SILLA GAMER COUGAR</h3>
-                <p>$129.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+                <aside class="cart-summary">
+                    <h2>RESUMEN COMPRA</h2>
+                    <div class="summary-row">
+                        <span>Descuento</span>
+                        <span>$0</span>
+                    </div>
 
-            <article class="product-card">
-                <img src="../img/png/notebook.png" alt="notebook tuf a15">
-                <h3>NOTEBOOK ASUS TUF A15</h3>
-                <p>$710.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+                    <div class="summary-line"></div>
+                    <div class="summary-total">
+                        <span>998.990</span>
+                    </div>
 
-            <article class="product-card">
-                <img src="../img/png/ps5.png" alt="playstation 5">
-                <h3>PLAYSTATION 5</h3>
-                <p>$799.000</p>
-                <button>Agregar al carrito</button>
-            </article>
+                    <button class="checkout-button">
+                        PROCEDER CON EL PAGO
+                    </button>
 
+                </aside>
 
-            <article class="product-card">
-                <img src="../img/png/mouse.png" alt="mouse logitech">
-                <h3>MOUSE GAMER LOGITECH</h3>
-                <p>$44.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+            </div>
 
-        </div>
+            <div class="empty-cart">
+                <div class="empty icon">
+                    🛒
+                </div>
+                <h2>Tu carrito está vacío</h2>
+                <p>Agrega algunos productos para comenzar tu compra</p>
+                <a href="products.html">VER PRODUCTOS</a>
+            </div>
 
-    </section>
+        </section>
+
+    </main>
 
     <footer class="footer">
         <ul class="social-icon">
@@ -133,6 +164,7 @@
     </footer>
 
     <script src="../js/auth.js"></script>
+    <script src="../js/products.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 

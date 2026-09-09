@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+#loginForm{
+    max-width: 500px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat';
+    background-color: #0b0b0f;
+    color: white;
+}
+
+header {
+    width: 100%;
+    background-color: #111116;
+    border-bottom: 1px solid #25252d;
+}
+
+.nav-bar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    color: #00E5FF;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    color: #b8b8c2;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #00E5FF;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 10px;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-actions a {
+    color: #00E5FF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.login-link {
+    gap: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-link ion-icon {
+    font-size: 27px;
+}
+
+.cart-link {
+    gap: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cart-link ion-icon {
+    font-size: 27px;
+}
+
+.separator {
+    color: white;
+    font-size: 20px;
+}
+
+.nav-actions a:hover {
+    color: white;
+}
+
+.auth-container {
+    min-height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.auth-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: 45px 40px;
+    background-color: #15151c;
+    border: 1px solid #25252d;
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background-color: #00E5FF;
+    opacity: 0.05;
+    border-radius: 50%;
+    filter: blur(70px);
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.auth-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.auth-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.auth-logo:hover {
+    transform: scale(1.05);
+}
+
+.auth-header h2 {
+    color: #00E5FF;
+    font-size: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    color: #b8b8c2;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: #0b0b0f;
+    border: 1px solid #25252d;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input::placeholder {
+    color: #666672;
+}
+
+.form-group input:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.error-msg {
+    display: block;
+    min-height: 15px;
+    color: #ff4d4d;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.general-error {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.auth-button {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    padding: 14px;
+    background-color: #00BFFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #0284C7;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.auth-footer {
+    margin-top: 25px;
+    color: #b8b8c2;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.auth-footer a {
+    color: #00E5FF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.auth-footer a:hover {
+    color: white;
+}
+
+.footer {
+    font-family: 'Montserrat';
+    width: 100%;
+    background-color: #111116;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: auto;
+    box-sizing: border-box;
+    border-top: 1px solid #25252d;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 10px 5px;
+    flex-wrap: wrap;
+}
+
+.icon-elem {
+    list-style: none;
+}
+
+.icon {
+    color: white;
+    font-size: 32px;
+    display: inline-block;
+    margin: 0 10px;
+    transition: 0.5s;
+}
+
+.icon:hover {
+    transform: translateY(-10px);
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.menu-elem {
+    text-decoration: none;
+}
+
+.menu-icon {
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px 10px;
+    opacity: 0.75;
+    transition: 0.3s;
+}
+
+.menu-icon:hover {
+    opacity: 1;
+}
+
+.text {
+    color: #b8b8c2;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+@media(max-width:1000px) {
+
+    .nav-bar {
+        padding: 0 30px;
+    }
+
+    .product-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .banner-content h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width:650px) {
+
+    .nav-bar {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .banner {
+        min-height: 450px;
+    }
+
+    .banner-content h1 {
+        font-size: 32px;
+    }
+
+    .banner-content p {
+        font-size: 16px;
+    }
+
+    .featured {
+        padding: 50px 20px;
+    }
+
+    .featured h2 {
+        font-size: 25px;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+}

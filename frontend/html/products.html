@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEVEL UP GAMER</title>
+    <link rel="stylesheet" href="../css/style_products.css">
+    <link rel="icon" type="image/png" href="../img/level-up.png">
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="index.html">LEVEL UP GAMER</a>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">INICIO</a>
+                </li>
+                <li>
+                    <a href="products.html">PRODUCTOS</a>
+                </li>
+                <li>
+                    <a href="sales.html">OFERTAS</a>
+                </li>
+                <li>
+                    <a href="about.html">NOSOTROS</a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">
+                    <ion-icon name="person"></ion-icon>
+                    <span>INICIAR SESIÓN</span>
+                </a>
+                <span class="separator">|</span>
+                    <a href="cart.html" class="cart-link">
+                        <ion-icon name="cart"></ion-icon>
+                        <span>CARRITO</span>
+                    </a>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="catalog">
+
+            <h1>CATÁLOGO DE PRODUCTOS</h1>
+            <p class="catalog-description">
+                Encuentra lo que todo gamer necesita aquí
+            </p>
+
+            <div class="catalog-controls">
+                <input type="text" id="searchInput" placeholder="Buscar productos">
+                <select id="categoryFilter">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="juegos">Juegos de mesa</option>
+                    <option value="accesorios">Accesorios</option>
+                    <option value="consolas">Consolas</option>
+                    <option value="computadores">Computadores</option>
+                    <option value="sillas">Sillas</option>
+                    <option value="mouse">Mouse</option>
+                    <option value="mousepad">Mousepad</option>
+                    <option value="poleras">Poleras</option>
+                    <option value="polerones">Polerones</option>
+                    <option value="servicio">Servicio técnico</option>
+                    
+                </select>
+            </div>
+
+            <div class="product-container" id="productContainer">
+
+                <article class="product-card" data-category="juegos">
+                    <img src="../img/png/catan.png" alt="catan">
+                    <h3>CATAN</h3>
+                    <p>$27.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="accesorios">
+                    <img src="../img/png/sony.png" alt="headset sony">
+                    <h3>SONY PULSE ELITE</h3>
+                    <p>$199.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+                
+                <article class="product-card" data-category="consolas">
+                    <img src="../img/png/ps5.png" alt="playstation 5">
+                    <h3>PLAYSTATION 5 SLIM 1TB</h3>
+                    <p>$799.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="computadores">
+                    <img src="../img/png/notebook.png" alt="notebook tuf a15">
+                    <h3>NOTEBOOK ASUS TUF A15</h3>
+                    <p>$710.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="sillas">
+                    <img src="../img/png/silla.png" alt="silla cougar">
+                    <h3>SILLA COUGAR</h3>
+                    <p>$129.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="mouse">
+                    <img src="../img/png/mouse.png" alt="mouse logitech">
+                    <h3>LOGITECH G502 X PLUS</h3>
+                    <p>$125.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="mousepad">
+                    <img src="../img/png/mousepad.png" alt="mouseapad">
+                    <h3>LOGITECH G440</h3>
+                    <p>$17.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="poleras">
+                    <img src="../img/png/polera.png" alt="polera ">
+                    <h3>POLERA GAMER ZONE</h3>
+                    <p>$19.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="polerones">
+                    <img src="../img/png/poleron.png" alt="poleron">
+                    <h3>POLERON GAMER ZONE</h3>
+                    <p>$29.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+                <article class="product-card" data-category="servicio">
+                    <img src="../img/png/ser_tec_ps5.png" alt="servicio">
+                    <h3>SERVICIO PS5</h3>
+                    <p>$85.990</p>
+                    <button>Agregar al carrito</button>
+                </article>
+
+            </div>
+
+            <p id="noResults" class="no-results">NO ENCONTRAMOS PRODUCTOS QUE COINCIDAN CON TU BUSQUEDA</p>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <ul class="social-icon">
+            <li class="icon-elem">
+                <a href="" class="icon" target="_blank">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon" target="_blank">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu">
+            <li class="menu-elem">
+                <a href="" class="menu-icon">Inicio</a>
+            </li>
+            <li class="menu-elem">
+                <a href="" class="menu-icon">Contacto</a>
+            </li>
+            <li class="menu-elem">
+                <a href="" class="menu-icon">Nosotros</a>
+            </li>
+        </ul>
+        <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
+    </footer>
+
+    <script src="../js/products.js"></script>
+
+    <script src="../js/auth.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

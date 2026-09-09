@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEVEL UP GAMER</title>
-    <link rel="stylesheet" href="../css/style_index.css">
+    <link rel="stylesheet" href="../css/style_login.css">
     <link rel="icon" type="image/png" href="../img/level-up.png">
 </head>
 
 <body>
 
     <header>
-
         <nav class="nav-bar">
             <div class="logo">
                 <a href="index.html">LEVEL UP GAMER</a>
@@ -43,57 +42,36 @@
                 </a>
             </div>
         </nav>
-
     </header>
 
-    <section class="banner">
+    <main class="auth-container">
+        <form id="loginForm" class="auth-card" novalidate>
+            <div class="auth-header">
+                <img src="../img/level-up.png" alt="Level Up Logo" class="auth-logo">
+                <h2>INICIAR SESIÓN</h2>
+            </div>
 
-        <div class="banner-content">
-            <h1>LOS MEJORES PRODUCTOS GAMER</h1>
-            <p>ENCUENTRA LO QUE NECESITAS AL MEJOR PRECIO</p>
-            <a href="products.html" class="banner-button">VER PRODUCTOS</a>
-        </div>
+            <div class="form-group">
+                <label for="loginEmail">CORREO ELECTRÓNICO</label>
+                <input type="email" id="loginEmail" placeholder="ejemplo@duoc.cl" autocomplete="off">
+                <small class="error-msg" id="errorLoginEmail"></small>
+            </div>
 
-    </section>
+            <div class="form-group">
+                <label for="loginPassword">CONTRASEÑA</label>
+                <input type="password" id="loginPassword" placeholder="••••••••">
+                <small class="error-msg" id="errorLoginPassword"></small>
+            </div>
 
-    <section class="featured">
+            <small class="error-msg general-error" id="loginGeneralError"></small>
 
-        <h2>PRODUCTOS DESTACADOS</h2>
+            <button type="submit" class="auth-button">INGRESAR</button>
 
-        <div class="product-container">
-
-            <article class="product-card">
-                <img src="../img/png/silla.png" alt="silla cougar">
-                <h3>SILLA GAMER COUGAR</h3>
-                <p>$129.990</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-            <article class="product-card">
-                <img src="../img/png/notebook.png" alt="notebook tuf a15">
-                <h3>NOTEBOOK ASUS TUF A15</h3>
-                <p>$710.990</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-            <article class="product-card">
-                <img src="../img/png/ps5.png" alt="playstation 5">
-                <h3>PLAYSTATION 5</h3>
-                <p>$799.000</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-
-            <article class="product-card">
-                <img src="../img/png/mouse.png" alt="mouse logitech">
-                <h3>MOUSE GAMER LOGITECH</h3>
-                <p>$44.990</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-        </div>
-
-    </section>
+            <p class="auth-footer">
+                ¿No tienes una cuenta? <a href="register.html">Regístrate aquí</a>
+            </p>
+        </form>
+    </main>
 
     <footer class="footer">
         <ul class="social-icon">

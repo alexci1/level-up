@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEVEL UP GAMER</title>
-    <link rel="stylesheet" href="../css/style_index.css">
+    <title>REGISTRO — LEVEL UP GAMER</title>
+    <link rel="stylesheet" href="../css/style_register.css">
     <link rel="icon" type="image/png" href="../img/level-up.png">
 </head>
 
 <body>
 
     <header>
-
         <nav class="nav-bar">
             <div class="logo">
                 <a href="index.html">LEVEL UP GAMER</a>
@@ -43,57 +42,52 @@
                 </a>
             </div>
         </nav>
-
     </header>
 
-    <section class="banner">
+    <main class="auth-container">
+        <form id="registroForm" class="auth-card" novalidate>
+            <div class="auth-header">
+                <img src="../img/level-up.png" alt="Level Up Logo" class="auth-logo">
+                <h2>CREAR CUENTA</h2>
+            </div>
 
-        <div class="banner-content">
-            <h1>LOS MEJORES PRODUCTOS GAMER</h1>
-            <p>ENCUENTRA LO QUE NECESITAS AL MEJOR PRECIO</p>
-            <a href="products.html" class="banner-button">VER PRODUCTOS</a>
-        </div>
+            <div class="form-group">
+                <label for="regRun">RUN (SIN PUNTOS NI GUIÓN)</label>
+                <input type="text" id="regRun" placeholder="Ej: 19011022K" maxlength="9" autocomplete="off">
+                <small class="error-msg" id="errorRegRun"></small>
+            </div>
 
-    </section>
+            <div class="form-group">
+                <label for="regNombre">NOMBRE</label>
+                <input type="text" id="regNombre" placeholder="Tu nombre" autocomplete="off">
+                <small class="error-msg" id="errorRegNombre"></small>
+            </div>
 
-    <section class="featured">
+            <div class="form-group">
+                <label for="regApellidos">APELLIDOS</label>
+                <input type="text" id="regApellidos" placeholder="Tus apellidos" autocomplete="off">
+                <small class="error-msg" id="errorRegApellidos"></small>
+            </div>
 
-        <h2>PRODUCTOS DESTACADOS</h2>
+            <div class="form-group">
+                <label for="regEmail">CORREO ELECTRÓNICO</label>
+                <input type="email" id="regEmail" placeholder="ejemplo@duoc.cl" autocomplete="off">
+                <small class="error-msg" id="errorRegEmail"></small>
+            </div>
 
-        <div class="product-container">
+            <div class="form-group">
+                <label for="regPassword">CONTRASEÑA</label>
+                <input type="password" id="regPassword" placeholder="Entre 4 y 10 caracteres">
+                <small class="error-msg" id="errorRegPassword"></small>
+            </div>
 
-            <article class="product-card">
-                <img src="../img/png/silla.png" alt="silla cougar">
-                <h3>SILLA GAMER COUGAR</h3>
-                <p>$129.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+            <button type="submit" class="auth-button">REGISTRARSE</button>
 
-            <article class="product-card">
-                <img src="../img/png/notebook.png" alt="notebook tuf a15">
-                <h3>NOTEBOOK ASUS TUF A15</h3>
-                <p>$710.990</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-            <article class="product-card">
-                <img src="../img/png/ps5.png" alt="playstation 5">
-                <h3>PLAYSTATION 5</h3>
-                <p>$799.000</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-
-            <article class="product-card">
-                <img src="../img/png/mouse.png" alt="mouse logitech">
-                <h3>MOUSE GAMER LOGITECH</h3>
-                <p>$44.990</p>
-                <button>Agregar al carrito</button>
-            </article>
-
-        </div>
-
-    </section>
+            <p class="auth-footer">
+                ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a>
+            </p>
+        </form>
+    </main>
 
     <footer class="footer">
         <ul class="social-icon">
@@ -120,13 +114,13 @@
         </ul>
         <ul class="menu">
             <li class="menu-elem">
-                <a href="" class="menu-icon">Inicio</a>
+                <a href="index.html" class="menu-icon">Inicio</a>
             </li>
             <li class="menu-elem">
-                <a href="" class="menu-icon">Contacto</a>
+                <a href="contact.html" class="menu-icon">Contacto</a>
             </li>
             <li class="menu-elem">
-                <a href="" class="menu-icon">Nosotros</a>
+                <a href="about.html" class="menu-icon">Nosotros</a>
             </li>
         </ul>
         <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
