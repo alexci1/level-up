@@ -7,6 +7,10 @@
     <title>REGISTRO — LEVEL UP GAMER</title>
     <link rel="stylesheet" href="../css/style_register.css">
     <link rel="icon" type="image/png" href="../img/level-up.png">
+
+    <!-- CSS de Flatpickr (Tema Oscuro Gamer) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
 </head>
 
 <body>
@@ -25,6 +29,12 @@
                 </li>
                 <li>
                     <a href="sales.html">OFERTAS</a>
+                </li>
+                <li>
+                    <a href="blogs.html">BLOGS</a>
+                </li>
+                <li>
+                    <a href="contacto.html">CONTACTO</a>
                 </li>
                 <li>
                     <a href="about.html">NOSOTROS</a>
@@ -72,7 +82,27 @@
             <div class="form-group">
                 <label for="regEmail">CORREO ELECTRÓNICO</label>
                 <input type="email" id="regEmail" placeholder="ejemplo@duoc.cl" autocomplete="off">
+                <small class="info-msg" style="color: #1E90FF; font-size: 0.8rem; display: block; margin-top: 4px;">
+                    💡 Si usas tu correo @duoc.cl o @duocuc.cl obtienes 20% de descuento vitalicio.
+                </small>
                 <small class="error-msg" id="errorRegEmail"></small>
+            </div>
+
+            <!-- CAMPO DE FECHA CON CALENDARIO INTERACTIVO -->
+            <div class="form-group">
+                <label for="regFechaNacimiento">FECHA DE NACIMIENTO</label>
+                <div style="position: relative;">
+                    <input type="text" id="regFechaNacimiento" placeholder="Selecciona tu fecha" readonly style="cursor: pointer; background-color: #1a1a1a; color: #fff;">
+                    <ion-icon name="calendar-outline" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #00ff88; pointer-events: none; font-size: 1.2rem;"></ion-icon>
+                </div>
+                <small class="error-msg" id="errorRegFechaNacimiento"></small>
+            </div>
+
+            <!-- CÓDIGO DE REFERIDO -->
+            <div class="form-group">
+                <label for="regReferido">CÓDIGO DE REFERIDO (OPCIONAL)</label>
+                <input type="text" id="regReferido" placeholder="Ej: LEVEL2026" autocomplete="off">
+                <small class="error-msg" id="errorRegReferido"></small>
             </div>
 
             <div class="form-group">
@@ -117,7 +147,10 @@
                 <a href="index.html" class="menu-icon">Inicio</a>
             </li>
             <li class="menu-elem">
-                <a href="contact.html" class="menu-icon">Contacto</a>
+                <a href="blogs.html" class="menu-icon">Blogs</a>
+            </li>
+            <li class="menu-elem">
+                <a href="contacto.html" class="menu-icon">Contacto</a>
             </li>
             <li class="menu-elem">
                 <a href="about.html" class="menu-icon">Nosotros</a>
@@ -125,6 +158,20 @@
         </ul>
         <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
     </footer>
+
+    <!-- JS de Flatpickr e Idioma Español -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+        <script>
+        // Configuración SIN límite de edad (permite seleccionar años recientes)
+        flatpickr("#regFechaNacimiento", {
+            locale: "es",
+            dateFormat: "d/m/Y",
+            maxDate: "today", // Permite seleccionar cualquier fecha hasta el día de hoy
+            disableMobile: true
+        });
+    </script>
 
     <script src="../js/auth.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>

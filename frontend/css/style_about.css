@@ -446,3 +446,106 @@ header {
     margin-bottom: 10px;
     font-size: 14px;
 }
+/* ================= UBICACIÓN Y MAPA ================= */
+.location-section {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    text-align: center;
+}
+
+.location-section h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.location-text {
+    color: #b8b8c2;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.map-wrapper {
+    border: 1px solid #25252d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+    transition: 0.3s;
+}
+
+.map-wrapper:hover {
+    border-color: #00E5FF;
+}
+
+/* ================= SOPORTE WHATSAPP ================= */
+.support-section {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 50px 30px;
+    background-color: #15151c;
+    border: 1px solid #25252d;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.support-section h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.support-section p {
+    color: #b8b8c2;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25d366;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.whatsapp-btn ion-icon {
+    font-size: 24px;
+}
+
+.whatsapp-btn:hover {
+    background-color: #1ebd56;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+/* BOTÓN FLOTANTE */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+}

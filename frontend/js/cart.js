@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartContainer = document.getElementById('cartContainer');
     const totalAmount = document.getElementById('totalAmount');
     const subtotalAmount = document.getElementById('subtotalAmount');
+    const discountAmount = document.getElementById('discountAmount');
+    const discountRow = document.getElementById('discountRow');
     const btnClearCart = document.getElementById('btnClearCart');
     const btnCheckout = document.getElementById('btnCheckout');
 
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function formatearPrecio(precio) {
-        return `$${precio.toLocaleString('es-CL')}`;
+        return `$${Math.round(precio).toLocaleString('es-CL')}`;
     }
 
     function renderizarCarrito() {
@@ -33,14 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             if (totalAmount) totalAmount.textContent = '$0';
             if (subtotalAmount) subtotalAmount.textContent = '$0';
+            if (discountRow) discountRow.style.display = 'none';
             return;
         }
 
-        let total = 0;
+        let subtotal = 0;
 
         cart.forEach((item, index) => {
             const itemTotal = item.precio * item.cantidad;
-            total += itemTotal;
+            subtotal += itemTotal;
 
             const itemCard = document.createElement('article');
             itemCard.classList.add('cart-item-card');
@@ -67,8 +70,26 @@ document.addEventListener('DOMContentLoaded', () => {
             cartContainer.appendChild(itemCard);
         });
 
-        if (totalAmount) totalAmount.textContent = formatearPrecio(total);
-        if (subtotalAmount) subtotalAmount.textContent = formatearPrecio(total);
+        // VERIFICAR BENEFICIO DESCUENTO DUOCUC (20%)
+        const sesion = typeof obtenerSesionActiva === "function" ? obtenerSesionActiva() : null;
+        const tieneDescuentoDuoc = sesion && (
+            sesion.descuentoDuoc || 
+            (sesion.email && (sesion.email.toLowerCase().endsWith('@duoc.cl') || sesion.email.toLowerCase().endsWith('@duocuc.cl')))
+        );
+
+        let descuento = 0;
+        if (tieneDescuentoDuoc) {
+            descuento = subtotal * 0.20; // 20% de descuento[cite: 2]
+            if (discountRow) discountRow.style.display = 'flex';
+            if (discountAmount) discountAmount.textContent = `-${formatearPrecio(descuento)}`;
+        } else {
+            if (discountRow) discountRow.style.display = 'none';
+        }
+
+        const totalFinal = subtotal - descuento;
+
+        if (subtotalAmount) subtotalAmount.textContent = formatearPrecio(subtotal);
+        if (totalAmount) totalAmount.textContent = formatearPrecio(totalFinal);
 
         asignarEventos();
     }

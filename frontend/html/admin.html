@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - LEVEL UP GAMER</title>
+    <link rel="stylesheet" href="../css/style_admin.css">
+    <link rel="icon" type="image/png" href="../img/level-up.png">
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="logo">
+            <a href="index.html">LEVEL UP GAMER - ADMIN</a>
+        </div>
+        <div class="user-info">
+            <span id="adminUserEmail">Cargando...</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <h1>PANEL DE ADMINISTRACIÓN</h1>
+
+        <!-- MANTENEDOR DE PRODUCTOS -->
+        <section class="crud-section">
+            <h2>Gestión de Productos</h2>
+            <form id="productForm" class="crud-form">
+                <input type="text" id="prodCode" placeholder="Código (ej: P001)" required>
+                <input type="text" id="prodName" placeholder="Nombre Producto" required>
+                <input type="number" id="prodPrice" placeholder="Precio ($)" required min="0">
+                <input type="number" id="prodStock" placeholder="Stock" required min="0">
+                <input type="number" id="prodCriticalStock" placeholder="Stock Crítico" required min="0">
+                <button type="submit" class="btn-save">Guardar Producto</button>
+            </form>
+
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>St. Crítico</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody"></tbody>
+            </table>
+        </section>
+
+        <!-- MANTENEDOR DE USUARIOS -->
+        <section class="crud-section">
+            <h2>Gestión de Usuarios</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>RUN</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

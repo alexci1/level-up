@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1f1f1f;
+    border-bottom: 2px solid #00ff88;
+}
+
+.admin-header .logo a {
+    color: #00ff88;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.btn-logout {
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.admin-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.crud-section {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.crud-section h2 {
+    color: #00ff88;
+    margin-bottom: 1rem;
+}
+
+.crud-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.crud-form input {
+    padding: 0.5rem;
+    border: 1px solid #333;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 4px;
+}
+
+.btn-save {
+    background-color: #00ff88;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.crud-table th, .crud-table td {
+    border: 1px solid #333;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.crud-table th {
+    background-color: #2a2a2a;
+    color: #00ff88;
+}
+
+.btn-delete {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
