@@ -74,7 +74,6 @@ addButtons.forEach(button => {
             cantidad: 1
         };
 
-        // Guardar usando la llave única del usuario actual
         const emailUsuario = sesion.email.toLowerCase().trim();
         const llaveUserCart = `cart_${emailUsuario}`;
 

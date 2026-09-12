@@ -7,7 +7,8 @@ const DEFAULT_ADMIN = {
     referido: "",
     password: "admin123",
     descuentoDuoc: true,
-    rol: "Administrador"
+    rol: "Administrador",
+    avatar: "../img/icons/Smiley-Face.avif"
 };
 
 const DEFAULT_CLIENT = {
@@ -87,10 +88,20 @@ function initData() {
     const usuariosIniciales = [DEFAULT_ADMIN, DEFAULT_CLIENT, DEFAULT_CLIENT_2, DEFAULT_CLIENT_3];
 
     usuariosIniciales.forEach(usrDefault => {
-        const existe = usuarios.some(usr => usr.email.toLowerCase() === usrDefault.email.toLowerCase());
-        if (!existe) {
+        const index = usuarios.findIndex(usr => usr.email.toLowerCase() === usrDefault.email.toLowerCase());
+        
+        if (index === -1) {
             usuarios.push(usrDefault);
             huboCambios = true;
+        } else {
+            if (!usuarios[index].avatar || usuarios[index].avatar !== usrDefault.avatar) {
+                usuarios[index].avatar = usrDefault.avatar;
+                huboCambios = true;
+            }
+            if (!usuarios[index].rol) {
+                usuarios[index].rol = usrDefault.rol;
+                huboCambios = true;
+            }
         }
     });
 
@@ -208,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     referido,
                     password,
                     descuentoDuoc: esDuoc,
-                    rol: 'Cliente'
+                    rol: 'Cliente',
+                    avatar: '../img/icons/Mouse.avif'
                 };
 
                 guardarUsuario(nuevoUsuario);
@@ -273,22 +285,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (sesion && navActions) {
         const avatarUser = sesion.avatar || '../img/icons/Mouse.avif';
+        const esAdmin = sesion.rol && (sesion.rol.toLowerCase() === 'admin' || sesion.rol.toLowerCase() === 'administrador');
 
-        navActions.innerHTML = `
-            <a href="profile.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
-                <img src="${avatarUser}" alt="Avatar" style="width:32px; height:32px; border-radius:50%; border:2px solid #00E5FF; object-fit:cover; background:#0b0b0f;">
-                <span style="color: #00E5FF; font-weight: bold; font-size: 14px;">${sesion.nombre}</span>
-            </a>
-            ${sesion.rol === 'Administrador' ? `<a href="admin.html" style="color:#00ff88; font-size: 14px; font-weight:bold; margin-left:5px;">[ADMIN]</a>` : ''}
-            <span class="separator"> | </span>
-            <a href="cart.html" class="cart-link">
-                <ion-icon name="cart"></ion-icon>
-                <span>CARRITO</span>
-            </a>
-            <span class="separator">|</span>
-            <button id="btnLogout" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 14px; font-weight:bold; font-family:'Montserrat';">CERRAR SESION</button>
-        `;
+        if (esAdmin) {
+            navActions.innerHTML = `
+                <a href="profile.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+                    <img src="${avatarUser}" alt="Avatar" style="width:32px; height:32px; border-radius:50%; border:2px solid #00E5FF; object-fit:cover; background:#0b0b0f;">
+                    <span style="color: #00E5FF; font-weight: bold; font-size: 14px;">${sesion.nombre}</span>
+                </a>
+                <span class="separator"> | </span>
+                <a href="admin.html" style="color: #00ff88; text-decoration: none; font-size: 14px; font-weight: bold;">PANEL ADMIN</a>
+                <span class="separator"> | </span>
+                <button id="btnLogout" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 14px; font-weight:bold; font-family:'Montserrat';">CERRAR SESION</button>
+            `;
+        } else {
+            navActions.innerHTML = `
+                <a href="profile.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+                    <img src="${avatarUser}" alt="Avatar" style="width:32px; height:32px; border-radius:50%; border:2px solid #00E5FF; object-fit:cover; background:#0b0b0f;">
+                    <span style="color: #00E5FF; font-weight: bold; font-size: 14px;">${sesion.nombre}</span>
+                </a>
+                <span class="separator"> | </span>
+                <a href="cart.html" class="cart-link">
+                    <ion-icon name="cart"></ion-icon>
+                    <span>CARRITO</span>
+                </a>
+                <span class="separator">|</span>
+                <button id="btnLogout" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 14px; font-weight:bold; font-family:'Montserrat';">CERRAR SESION</button>
+            `;
+        }
 
-        document.getElementById('btnLogout').addEventListener('click', cerrarSesion);
+        const btnLogout = document.getElementById('btnLogout');
+        if (btnLogout) {
+            btnLogout.addEventListener('click', cerrarSesion);
+        }
     }
 });

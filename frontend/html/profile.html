@@ -53,17 +53,17 @@
                     <span id="profileRole" class="role-badge">CLIENTE</span>
                     <p id="profileEmail" class="email-text">--</p>
                 </div>
-
                 <button id="btnSidebarLogout" class="btn-logout-sidebar">
                     <ion-icon name="log-out-outline"></ion-icon> CERRAR SESIÓN
                 </button>
             </div>
+
             <div class="profile-content">
-                <div class="profile-tabs-header">
+                <div class="profile-tabs-header" id="profileTabsHeader">
                     <button class="tab-btn active" data-tab="tab-datos">
                         <ion-icon name="person-outline"></ion-icon> MIS DATOS Y AVATAR
                     </button>
-                    <button class="tab-btn" data-tab="tab-compras">
+                    <button class="tab-btn" data-tab="tab-compras" id="tabBtnCompras">
                         <ion-icon name="receipt-outline"></ion-icon> HISTORIAL DE COMPRAS
                     </button>
                 </div>
@@ -83,9 +83,14 @@
                                 data-avatar="../img/icons/Panda.avif">
                             <img src="../img/icons/Monkey.avif" alt="Monkey" class="avatar-opt"
                                 data-avatar="../img/icons/Monkey.avif">
+                            <img src="../img/icons/Smiley-Face.avif" alt="Smiley" class="avatar-opt"
+                                data-avatar="../img/icons/Smiley-Face.avif">
+                            <img src="../img/icons/Pirate.avif" alt="Pirate" class="avatar-opt"
+                                data-avatar="../img/icons/Pirate.avif">
+                            <img src="../img/icons/Dragon.avif" alt="Dragon" class="avatar-opt"
+                                data-avatar="../img/icons/Dragon.avif">
                         </div>
                     </div>
-
                     <form id="profileForm" class="profile-form">
                         <h3><ion-icon name="location-outline"></ion-icon> DIRECCIÓN DE ENVÍO Y DATOS</h3>
 
@@ -124,8 +129,22 @@
 
                         <button type="submit" class="btn-save-profile">GUARDAR CAMBIOS</button>
                     </form>
+                    <div id="adminInfoPanel"
+                        style="display: none; text-align: center; padding: 30px; background-color: #111116; border-radius: 8px; border: 1px solid #25252d; margin-top: 20px;">
+                        <h3 style="color: #00E5FF; margin-bottom: 15px;"><ion-icon name="shield-checkmark-outline"
+                                style="font-size: 24px; vertical-align: middle;"></ion-icon> PANEL DE CONTROL DE
+                            ADMINISTRADOR</h3>
+                        <p style="color: #b8b8c2; margin-bottom: 25px; font-size: 14px;">Tienes privilegios de acceso
+                            total al sistema. Desde aquí puedes gestionar los productos, inventario y supervisar la
+                            plataforma.</p>
+                        <a href="admin.html" class="btn-save-profile"
+                            style="display: inline-block; text-decoration: none; max-width: 280px; text-align: center; line-height: normal;">
+                            IR AL PANEL ADMIN
+                        </a>
+                    </div>
 
                 </div>
+
                 <div id="tab-compras" class="tab-pane">
                     <div class="profile-block">
                         <h3><ion-icon name="bag-handle-outline"></ion-icon> MIS PEDIDOS Y COMPRAS</h3>

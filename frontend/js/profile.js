@@ -1,198 +1,110 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     const sesion = typeof obtenerSesionActiva === "function" ? obtenerSesionActiva() : null;
 
     if (!sesion) {
-        alert("Debes iniciar sesión para acceder a tu perfil.");
+        alert("Debes iniciar sesión para ver tu perfil.");
         window.location.href = "login.html";
         return;
     }
 
-    const emailUsuario = sesion.email ? sesion.email.toLowerCase().trim() : "";
+    const profileName = document.getElementById('profileName');
+    const profileEmail = document.getElementById('profileEmail');
+    const profileRole = document.getElementById('profileRole');
+    const profileCurrentAvatar = document.getElementById('profileCurrentAvatar');
+    
+    const profRun = document.getElementById('profRun');
+    const profNombre = document.getElementById('profNombre');
+    const profDireccion = document.getElementById('profDireccion');
+    const profRegion = document.getElementById('profRegion');
+    const profComuna = document.getElementById('profComuna');
+    const profTelefono = document.getElementById('profTelefono');
 
-    const tabBtns = document.querySelectorAll(".tab-btn");
-    const tabPanes = document.querySelectorAll(".tab-pane");
+    const profileForm = document.getElementById('profileForm');
+    const adminInfoPanel = document.getElementById('adminInfoPanel');
+    const adminSidebarContainer = document.getElementById('adminSidebarContainer');
+    const tabBtnCompras = document.getElementById('tabBtnCompras');
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const targetTab = btn.getAttribute("data-tab");
+    if (profileName) profileName.textContent = sesion.nombre || "Usuario";
+    if (profileEmail) profileEmail.textContent = sesion.email || "--";
+    if (profileRole) profileRole.textContent = sesion.rol ? sesion.rol.toUpperCase() : "CLIENTE";
+    
+    const avatarPorDefecto = sesion.rol && sesion.rol.toLowerCase() === 'administrador' 
+        ? "../img/icons/Smiley-Face-Man.avif" 
+        : "../img/icons/Mouse.avif";
+    
+    const avatarGuardado = sesion.avatar || avatarPorDefecto;
+    if (profileCurrentAvatar) profileCurrentAvatar.src = avatarGuardado;
 
-            tabBtns.forEach(b => b.classList.remove("active"));
-            tabPanes.forEach(p => p.classList.remove("active"));
+    const esAdmin = sesion.rol && (sesion.rol.toLowerCase() === 'admin' || sesion.rol.toLowerCase() === 'administrador');
 
-            btn.classList.add("active");
-            document.getElementById(targetTab).classList.add("active");
-        });
-    });
+    if (esAdmin) {
+        if (profileForm) profileForm.style.display = 'none';
+        if (tabBtnCompras) tabBtnCompras.style.display = 'none';
 
-    const elName = document.getElementById("profileName");
-    const elEmail = document.getElementById("profileEmail");
-    const elRole = document.getElementById("profileRole");
-    const elRun = document.getElementById("profRun");
-    const elNombreForm = document.getElementById("profNombre");
-    const elDireccion = document.getElementById("profDireccion");
-    const elRegion = document.getElementById("profRegion");
-    const elComuna = document.getElementById("profComuna");
-    const elTelefono = document.getElementById("profTelefono");
+        if (adminInfoPanel) adminInfoPanel.style.display = 'block';
 
-    if (elName) elName.textContent = `${sesion.nombre} ${sesion.apellidos || ''}`;
-    if (elEmail) elEmail.textContent = sesion.email;
-    if (elRole) elRole.textContent = sesion.rol || 'CLIENTE';
-    if (elRun) elRun.value = sesion.run || '11111111K';
-    if (elNombreForm) elNombreForm.value = `${sesion.nombre} ${sesion.apellidos || ''}`;
-    if (elDireccion) elDireccion.value = sesion.direccion || '';
-    if (elRegion) elRegion.value = sesion.region || '';
-    if (elComuna) elComuna.value = sesion.comuna || '';
-    if (elTelefono) elTelefono.value = sesion.telefono || '';
-
-    // Manejo de Avatar
-    let selectedAvatar = sesion.avatar || "../img/icons/Monkey.avif";
-    const currentAvatarImg = document.getElementById("profileCurrentAvatar");
-    if (currentAvatarImg) currentAvatarImg.setAttribute("src", selectedAvatar);
-
-    const avatarOpts = document.querySelectorAll(".avatar-opt");
-    avatarOpts.forEach(opt => {
-        if (opt.getAttribute("data-avatar") === selectedAvatar) {
-            opt.classList.add("active");
-        } else {
-            opt.classList.remove("active");
+        if (adminSidebarContainer) {
+            adminSidebarContainer.innerHTML = `
+                <a href="admin.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background-color: #00E5FF; color: #0b0b0f; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s; font-size: 13px;">
+                    <ion-icon name="settings-outline" style="font-size: 18px;"></ion-icon> PANEL ADMIN
+                </a>
+            `;
         }
+    } else {
+        if (profRun) profRun.value = sesion.run || '';
+        if (profNombre) profNombre.value = sesion.nombre || '';
+        if (profDireccion) profDireccion.value = sesion.direccion || '';
+        if (profRegion) profRegion.value = sesion.region || '';
+        if (profComuna) profComuna.value = sesion.comuna || '';
+        if (profTelefono) profTelefono.value = sesion.telefono || '';
+    }
 
-        opt.addEventListener("click", () => {
-            avatarOpts.forEach(o => o.classList.remove("active"));
-            opt.classList.add("active");
-            selectedAvatar = opt.getAttribute("data-avatar");
-            if (currentAvatarImg) currentAvatarImg.setAttribute("src", selectedAvatar);
+    const avatarOpts = document.querySelectorAll('.avatar-opt');
+    avatarOpts.forEach(imgOpt => {
+        imgOpt.addEventListener('click', () => {
+            const nuevoAvatar = imgOpt.getAttribute('data-avatar');
+            if (profileCurrentAvatar) profileCurrentAvatar.src = nuevoAvatar;
+            sesion.avatar = nuevoAvatar;
+            localStorage.setItem('levelup_sesion_activa', JSON.stringify(sesion));
+
+            let listaUsuarios = JSON.parse(localStorage.getItem('levelup_usuarios')) || [];
+            const index = listaUsuarios.findIndex(u => u.email.toLowerCase() === sesion.email.toLowerCase());
+            if (index !== -1) {
+                listaUsuarios[index].avatar = nuevoAvatar;
+                localStorage.setItem('levelup_usuarios', JSON.stringify(listaUsuarios));
+            }
+
+            alert("¡Avatar actualizado con éxito!");
         });
     });
 
-    // Guardar cambios de perfil
-    const profileForm = document.getElementById("profileForm");
-    if (profileForm) {
-        profileForm.addEventListener("submit", (e) => {
+    if (profileForm && !esAdmin) {
+        profileForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            sesion.nombre = profNombre.value;
+            sesion.direccion = profDireccion.value;
+            sesion.region = profRegion.value;
+            sesion.comuna = profComuna.value;
+            sesion.telefono = profTelefono.value;
 
-            sesion.direccion = elDireccion.value.trim();
-            sesion.region = elRegion.value.trim();
-            sesion.comuna = elComuna.value.trim();
-            sesion.telefono = elTelefono.value.trim();
-            sesion.avatar = selectedAvatar;
+            localStorage.setItem('levelup_sesion_activa', JSON.stringify(sesion));
 
-            localStorage.setItem("levelup_sesion_activa", JSON.stringify(sesion));
-
-            const usuarios = JSON.parse(localStorage.getItem("levelup_usuarios")) || [];
-            const idx = usuarios.findIndex(u => u.email.toLowerCase() === emailUsuario);
-            if (idx !== -1) {
-                usuarios[idx] = { ...usuarios[idx], ...sesion };
-                localStorage.setItem("levelup_usuarios", JSON.stringify(usuarios));
+            let listaUsuarios = JSON.parse(localStorage.getItem('levelup_usuarios')) || [];
+            const index = listaUsuarios.findIndex(u => u.email.toLowerCase() === sesion.email.toLowerCase());
+            if (index !== -1) {
+                listaUsuarios[index] = { ...listaUsuarios[index], ...sesion };
+                localStorage.setItem('levelup_usuarios', JSON.stringify(listaUsuarios));
             }
 
-            alert("¡Perfil y dirección guardados con éxito!");
-            location.reload();
+            alert("¡Datos de perfil guardados correctamente!");
         });
     }
 
-    const logoutBtn = document.getElementById("btnSidebarLogout");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            cerrarSesion();
+    const btnSidebarLogout = document.getElementById('btnSidebarLogout');
+    if (btnSidebarLogout) {
+        btnSidebarLogout.addEventListener('click', () => {
+            localStorage.removeItem('levelup_sesion_activa');
+            window.location.href = 'index.html';
         });
     }
-
-    // COMPRAS DEFAULT INDIVIDUALES
-    const COMPRAS_POR_DEFECTO = {
-        "matias@duoc.cl": [
-            {
-                id: "ORD-2026-9812",
-                fecha: "05/09/2026",
-                estado: "Entregado",
-                total: 799990,
-                productos: [
-                    { nombre: "PLAYSTATION 5 SLIM 1TB", cantidad: 1, precio: 799990, imagen: "../img/png/ps5.png" }
-                ]
-            },
-            {
-                id: "ORD-2026-4401",
-                fecha: "10/09/2026",
-                estado: "En Camino",
-                total: 143980,
-                productos: [
-                    { nombre: "LOGITECH G502 X PLUS", cantidad: 1, precio: 125990, imagen: "../img/png/mouse.png" },
-                    { nombre: "LOGITECH G440", cantidad: 1, precio: 17990, imagen: "../img/png/mousepad.png" }
-                ]
-            }
-        ],
-        "alex@duoc.cl": [
-            {
-                id: "ORD-2026-3310",
-                fecha: "02/09/2026",
-                estado: "Entregado",
-                total: 710990,
-                productos: [
-                    { nombre: "NOTEBOOK ASUS TUF A15", cantidad: 1, precio: 710990, imagen: "../img/png/notebook.png" }
-                ]
-            }
-        ],
-        "andres@duoc.cl": [
-            {
-                id: "ORD-2026-1120",
-                fecha: "08/09/2026",
-                estado: "En Camino",
-                total: 199990,
-                productos: [
-                    { nombre: "SONY PULSE ELITE", cantidad: 1, precio: 199990, imagen: "../img/png/sony.png" }
-                ]
-            }
-        ]
-    };
-
-    function cargarHistorialCompras() {
-        const ordersContainer = document.getElementById("ordersContainer");
-        if (!ordersContainer) return;
-
-        const userOrdersKey = `levelup_user_orders_v2_${emailUsuario}`;
-        let ordenes = JSON.parse(localStorage.getItem(userOrdersKey));
-
-        if (!ordenes) {
-            ordenes = COMPRAS_POR_DEFECTO[emailUsuario] || [];
-            localStorage.setItem(userOrdersKey, JSON.stringify(ordenes));
-        }
-
-        if (ordenes.length === 0) {
-            ordersContainer.innerHTML = `<p class="no-orders">Aún no has realizado ninguna compra en Level Up Gamer.</p>`;
-            return;
-        }
-
-        ordersContainer.innerHTML = ordenes.map(orden => `
-            <div class="order-card">
-                <div class="order-header">
-                    <div>
-                        <span class="order-id">N° ${orden.id}</span>
-                        <div class="order-date"><ion-icon name="calendar-outline"></ion-icon> ${orden.fecha}</div>
-                    </div>
-                    <span class="order-status ${orden.estado === 'Entregado' ? 'status-entregado' : 'status-en-camino'}">
-                        ${orden.estado}
-                    </span>
-                </div>
-
-                <div class="order-items">
-                    ${orden.productos.map(p => `
-                        <div class="order-item-single">
-                            <img src="${p.imagen}" alt="${p.nombre}">
-                            <div class="order-item-details">
-                                <span class="order-item-name">${p.nombre}</span>
-                                <span class="order-item-qty-price">${p.cantidad}x $${Number(p.precio).toLocaleString("es-CL")}</span>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <div class="order-footer">
-                    <span class="order-total-label">TOTAL COMPRA:</span>
-                    <span class="order-total-price">$${Number(orden.total).toLocaleString("es-CL")}</span>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    cargarHistorialCompras();
 });

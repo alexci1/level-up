@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMensaje = document.getElementById('errorContactMensaje');
     const successMsg = document.getElementById('contactSuccess');
 
-    // Expresión regular para validar formato de correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Función para validar el campo Nombre
     const validarNombre = () => {
         const valor = inputNombre.value.trim();
         if (valor === '') {
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para validar el campo Correo
+
     const validarEmail = () => {
         const valor = inputEmail.value.trim();
         if (valor === '') {
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para validar el campo Mensaje
     const validarMensaje = () => {
         const valor = inputMensaje.value.trim();
         if (valor === '') {
@@ -66,26 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Validaciones en tiempo real mientras el usuario escribe (evento input)
     inputNombre.addEventListener('input', validarNombre);
     inputEmail.addEventListener('input', validarEmail);
     inputMensaje.addEventListener('input', validarMensaje);
 
-    // Evento al enviar el formulario
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Ejecutar todas las validaciones
         const esNombreValido = validarNombre();
         const esEmailValido = validarEmail();
         const esMensajeValido = validarMensaje();
 
-        // Si todos los campos son válidos
         if (esNombreValido && esEmailValido && esMensajeValido) {
             successMsg.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
             contactForm.reset();
 
-            // Ocultar el mensaje de éxito después de 5 segundos
             setTimeout(() => {
                 successMsg.textContent = '';
             }, 5000);

@@ -189,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cambiar pestañas de pago (Tarjeta vs Webpay)
     methodBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             methodBtns.forEach(b => b.classList.remove('active'));
@@ -206,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Formateo automático de entrada de tarjeta
     const inputCardNumber = document.getElementById('cardNumber');
     if (inputCardNumber) {
         inputCardNumber.addEventListener('input', (e) => {
@@ -258,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 userOrders.unshift(nuevaOrden);
                 localStorage.setItem(userOrdersKey, JSON.stringify(userOrders));
                 
-                // Limpiar únicamente el carrito del usuario actual tras comprar
                 localStorage.removeItem(obtenerLlaveCarrito());
 
                 paymentLoading.style.display = 'none';
