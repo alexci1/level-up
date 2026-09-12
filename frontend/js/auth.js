@@ -108,6 +108,58 @@ function initData() {
     if (huboCambios) {
         localStorage.setItem('levelup_usuarios', JSON.stringify(usuarios));
     }
+
+    const pedidosDemo = {
+        "matias@duoc.cl": [
+            {
+                id: "ORD-2026-7841",
+                fecha: "08/09/2026",
+                estado: "ENTREGADO",
+                total: 129990,
+                productos: [
+                    { nombre: "SILLA GAMER COUGAR", cantidad: 1, precio: 129990, imagen: "../img/png/silla.png" }
+                ]
+            },
+            {
+                id: "ORD-2026-9210",
+                fecha: "01/09/2026",
+                estado: "EN CAMINO",
+                total: 44990,
+                productos: [
+                    { nombre: "MOUSE GAMER LOGITECH", cantidad: 1, precio: 44990, imagen: "../img/png/mouse.png" }
+                ]
+            }
+        ],
+        "alex@duoc.cl": [
+            {
+                id: "ORD-2026-4532",
+                fecha: "10/09/2026",
+                estado: "EN CAMINO",
+                total: 799000,
+                productos: [
+                    { nombre: "PLAYSTATION 5", cantidad: 1, precio: 799000, imagen: "../img/png/ps5.png" }
+                ]
+            }
+        ],
+        "andres@duoc.cl": [
+            {
+                id: "ORD-2026-1158",
+                fecha: "03/09/2026",
+                estado: "ENTREGADO",
+                total: 27990,
+                productos: [
+                    { nombre: "CATAN", cantidad: 1, precio: 27990, imagen: "../img/png/catan.png" }
+                ]
+            }
+        ]
+    };
+
+    Object.keys(pedidosDemo).forEach(email => {
+        const orderKey = `levelup_user_orders_v2_${email}`;
+        if (!localStorage.getItem(orderKey)) {
+            localStorage.setItem(orderKey, JSON.stringify(pedidosDemo[email]));
+        }
+    });
 }
 
 function validarEmailDominio(email) {

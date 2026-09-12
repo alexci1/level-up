@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nuevaOrden = {
                     id: `ORD-2026-${Math.floor(1000 + Math.random() * 9000)}`,
                     fecha: new Date().toLocaleDateString("es-CL"),
-                    estado: "En Camino",
+                    estado: "EN CAMINO",
                     total: currentPayTotal,
                     productos: cart.map(item => ({
                         nombre: item.nombre,
