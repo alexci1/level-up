@@ -15,17 +15,18 @@
 
         <nav class="nav-bar">
             <div class="logo">
-                <a href="index.html">LEVEL UP GAMER</a>
+                <a href="index.html">
+                    <img src="../img/level-up.png" alt="Logo Level Up Gamer" class="logo-img">
+                    <span>LEVEL UP GAMER</span>
+                </a>
             </div>
+
             <ul class="nav-links">
                 <li>
                     <a href="index.html" class="active">INICIO</a>
                 </li>
                 <li>
                     <a href="products.html">PRODUCTOS</a>
-                </li>
-                <li>
-                    <a href="sales.html">OFERTAS</a>
                 </li>
                 <li>
                     <a href="blogs.html">BLOGS</a>
@@ -64,37 +65,78 @@
 
     <section class="featured">
 
-        <h2>PRODUCTOS DESTACADOS</h2>
+        <div class="featured-carousel">
 
-        <div class="product-container">
+            <button class="carousel-btn prev-btn" id="prevBtn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
 
-            <article class="product-card">
-                <img src="../img/png/silla.png" alt="silla cougar">
-                <h3>SILLA GAMER COUGAR</h3>
-                <p>$129.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+            <div class="featured-window">
+                <div class="product-container" id="featuredProducts">
 
-            <article class="product-card">
-                <img src="../img/png/notebook.png" alt="notebook tuf a15">
-                <h3>NOTEBOOK ASUS TUF A15</h3>
-                <p>$710.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+                    <article class="product-card">
+                        <img src="../img/png/silla.png" alt="silla cougar">
+                        <h3>SILLA GAMER COUGAR</h3>
+                        <p>$129.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
 
-            <article class="product-card">
-                <img src="../img/png/ps5.png" alt="playstation 5">
-                <h3>PLAYSTATION 5</h3>
-                <p>$799.000</p>
-                <button>Agregar al carrito</button>
-            </article>
+                    <article class="product-card">
+                        <img src="../img/png/notebook.png" alt="notebook tuf a15">
+                        <h3>NOTEBOOK ASUS TUF A15</h3>
+                        <p>$710.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
 
-            <article class="product-card">
-                <img src="../img/png/mouse.png" alt="mouse logitech">
-                <h3>MOUSE GAMER LOGITECH</h3>
-                <p>$44.990</p>
-                <button>Agregar al carrito</button>
-            </article>
+                    <article class="product-card">
+                        <img src="../img/png/ps5.png" alt="playstation 5">
+                        <h3>PLAYSTATION 5</h3>
+                        <p>$799.000</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="../img/png/mouse.png" alt="mouse logitech">
+                        <h3>MOUSE GAMER LOGITECH</h3>
+                        <p>$44.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="../img/png/catan.png" alt="Catan">
+                        <h3>CATAN</h3>
+                        <p>$27.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="../img/png/sony.png" alt="Sony Pulse Elite">
+                        <h3>SONY PULSE ELITE</h3>
+                        <p>$199.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="../img/png/mousepad.png" alt="Mousepad Logitech">
+                        <h3>LOGITECH G440</h3>
+                        <p>$17.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="../img/png/polera.png" alt="Polera Gamer Zone">
+                        <h3>POLERA GAMER ZONE</h3>
+                        <p>$19.990</p>
+                        <button>AGREGAR AL CARRITO</button>
+                    </article>
+
+                </div>
+            </div>
+
+
+            <button class="carousel-btn next-btn" id="nextBtn">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
 
         </div>
 
@@ -140,6 +182,7 @@
         <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
     </footer>
 
+    <script src="../js/featured.js"></script>
     <script src="../js/auth.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>

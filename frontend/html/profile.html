@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI PERFIL — LEVEL UP GAMER</title>
+    <link rel="stylesheet" href="../css/style_profile.css">
+    <link rel="icon" type="image/png" href="../img/level-up.png">
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../img/level-up.png" alt="Logo Level Up Gamer" class="logo-img">
+                    <span>LEVEL UP GAMER</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="products.html">PRODUCTOS</a></li>
+                <li><a href="blogs.html">BLOGS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="about.html">NOSOTROS</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">
+                    <ion-icon name="person"></ion-icon>
+                    <span>INICIAR SESIÓN</span>
+                </a>
+                <span class="separator">|</span>
+                <a href="cart.html" class="cart-link">
+                    <ion-icon name="cart"></ion-icon>
+                    <span>CARRITO</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-section">
+        <div class="profile-card">
+            <div class="profile-sidebar">
+                <div class="profile-info-top">
+                    <div class="avatar-current-box">
+                        <img id="profileCurrentAvatar" src="../img/icons/Mouse.avif" alt="Avatar Usuario">
+                    </div>
+                    <h2 id="profileName">Cargando...</h2>
+                    <span id="profileRole" class="role-badge">CLIENTE</span>
+                    <p id="profileEmail" class="email-text">--</p>
+                </div>
+
+                <button id="btnSidebarLogout" class="btn-logout-sidebar">
+                    <ion-icon name="log-out-outline"></ion-icon> CERRAR SESIÓN
+                </button>
+            </div>
+            <div class="profile-content">
+                <div class="profile-tabs-header">
+                    <button class="tab-btn active" data-tab="tab-datos">
+                        <ion-icon name="person-outline"></ion-icon> MIS DATOS Y AVATAR
+                    </button>
+                    <button class="tab-btn" data-tab="tab-compras">
+                        <ion-icon name="receipt-outline"></ion-icon> HISTORIAL DE COMPRAS
+                    </button>
+                </div>
+
+                <div id="tab-datos" class="tab-pane active">
+
+                    <div class="profile-block">
+                        <h3><ion-icon name="game-controller-outline"></ion-icon> ELIGE TU AVATAR GAMER</h3>
+                        <div class="avatar-selector">
+                            <img src="../img/icons/Anime.avif" alt="Anime" class="avatar-opt"
+                                data-avatar="../img/icons/Anime.avif">
+                            <img src="../img/icons/Blue-Face-Man.avif" alt="Blue-Face" class="avatar-opt"
+                                data-avatar="../img/icons/Blue-Face-Man.avif">
+                            <img src="../img/icons/Emo.avif" alt="Emo" class="avatar-opt"
+                                data-avatar="../img/icons/Emo.avif">
+                            <img src="../img/icons/Panda.avif" alt="Panda" class="avatar-opt"
+                                data-avatar="../img/icons/Panda.avif">
+                            <img src="../img/icons/Monkey.avif" alt="Monkey" class="avatar-opt"
+                                data-avatar="../img/icons/Monkey.avif">
+                        </div>
+                    </div>
+
+                    <form id="profileForm" class="profile-form">
+                        <h3><ion-icon name="location-outline"></ion-icon> DIRECCIÓN DE ENVÍO Y DATOS</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profRun">RUN</label>
+                                <input type="text" id="profRun" readonly disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="profNombre">NOMBRE COMPLETO</label>
+                                <input type="text" id="profNombre" placeholder="Tu nombre" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profDireccion">DIRECCIÓN (CALLE Y NÚMERO)</label>
+                            <input type="text" id="profDireccion" placeholder="Ej: Av. Providencia 1234, Dpto 502"
+                                required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profRegion">REGIÓN</label>
+                                <input type="text" id="profRegion" placeholder="Ej: Región Metropolitana" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profComuna">COMUNA</label>
+                                <input type="text" id="profComuna" placeholder="Ej: Santiago Centro" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profTelefono">TELÉFONO DE CONTACTO</label>
+                            <input type="text" id="profTelefono" placeholder="Ej: +56 9 1234 5678" required>
+                        </div>
+
+                        <button type="submit" class="btn-save-profile">GUARDAR CAMBIOS</button>
+                    </form>
+
+                </div>
+                <div id="tab-compras" class="tab-pane">
+                    <div class="profile-block">
+                        <h3><ion-icon name="bag-handle-outline"></ion-icon> MIS PEDIDOS Y COMPRAS</h3>
+                        <div id="ordersContainer" class="orders-container">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <ul class="social-icon">
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="mail-outline"></ion-icon></a></li>
+        </ul>
+        <ul class="menu">
+            <li class="menu-elem"><a href="index.html" class="menu-icon">Inicio</a></li>
+            <li class="menu-elem"><a href="contacto.html" class="menu-icon">Contacto</a></li>
+            <li class="menu-elem"><a href="about.html" class="menu-icon">Nosotros</a></li>
+        </ul>
+        <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Blog - LEVEL UP GAMER</title>
+    <link rel="stylesheet" href="../css/style_blog-detail.css">
+    <link rel="icon" type="image/png" href="../img/level-up.png">
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../img/level-up.png" alt="Logo Level Up Gamer" class="logo-img">
+                    <span>LEVEL UP GAMER</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="products.html">PRODUCTOS</a></li>
+                <li><a href="blogs.html" class="active">BLOGS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="about.html">NOSOTROS</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">
+                    <ion-icon name="person"></ion-icon>
+                    <span>INICIAR SESIÓN</span>
+                </a>
+                <span class="separator">|</span>
+                <a href="cart.html" class="cart-link">
+                    <ion-icon name="cart"></ion-icon>
+                    <span>CARRITO</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="detail-section">
+        <article id="blogDetailCard" class="blog-detail-card">
+            <div class="blog-detail-header">
+                <span id="blogCategory" class="blog-category">NOTICIAS</span>
+                <h1 id="blogTitle">Cargando artículo...</h1>
+                <span id="blogDate" class="blog-date"><ion-icon name="calendar-outline"></ion-icon> --</span>
+            </div>
+
+            <div class="blog-detail-image-container">
+                <img id="blogImage" src="" alt="Imagen del artículo">
+            </div>
+
+            <div id="blogBody" class="blog-detail-body">
+            </div>
+
+            <div class="blog-detail-actions">
+                <a href="blogs.html" class="btn-back"><ion-icon name="arrow-back-outline"></ion-icon> VOLVER A BLOGS</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <ul class="social-icon">
+            <li class="icon-elem"><a href="#" class="icon" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li class="icon-elem"><a href="#" class="icon"><ion-icon name="mail-outline"></ion-icon></a></li>
+        </ul>
+        <ul class="menu">
+            <li class="menu-elem"><a href="index.html" class="menu-icon">Inicio</a></li>
+            <li class="menu-elem"><a href="contacto.html" class="menu-icon">Contacto</a></li>
+            <li class="menu-elem"><a href="about.html" class="menu-icon">Nosotros</a></li>
+        </ul>
+        <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
+    </footer>
+
+    <script src="../js/blogs-detail.js"></script>
+    <script src="../js/auth.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

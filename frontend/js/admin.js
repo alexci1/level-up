@@ -1,7 +1,5 @@
-// admin.js - Versión Final Corregida y Unificada
-
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Control de Permisos: Verificar sesión activa desde 'levelup_sesion_activa'
+
     const session = JSON.parse(localStorage.getItem("levelup_sesion_activa"));
 
     if (!session || session.rol !== "Administrador") {
@@ -10,13 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Mostrar correo del usuario en el encabezado
     const adminEmailElem = document.getElementById("adminUserEmail");
     if (adminEmailElem) {
         adminEmailElem.textContent = session.email;
     }
 
-    // Botón de Cerrar Sesión
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
@@ -25,11 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Cargar datos iniciales en las tablas
     renderProducts();
     renderUsers();
 
-    // 3. Formulario para Agregar Nuevo Producto
     const productForm = document.getElementById("productForm");
     if (productForm) {
         productForm.addEventListener("submit", (e) => {
@@ -53,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Inicializador de Productos Predeterminados
 function initProducts() {
     let productos = JSON.parse(localStorage.getItem("levelup_productos")) || [];
     if (productos.length === 0) {
@@ -73,7 +66,7 @@ function initProducts() {
     }
 }
 
-// Renderizado de Tabla de Productos
+
 function renderProducts() {
     initProducts();
     const products = JSON.parse(localStorage.getItem("levelup_productos")) || [];
@@ -98,9 +91,7 @@ function renderProducts() {
     });
 }
 
-// Renderizado de Tabla de Usuarios
 function renderUsers() {
-    // Lee desde la clave global unificada 'levelup_usuarios'
     const users = JSON.parse(localStorage.getItem("levelup_usuarios")) || [];
     const tbody = document.getElementById("userTableBody");
     if (!tbody) return;
@@ -108,7 +99,6 @@ function renderUsers() {
     tbody.innerHTML = "";
 
     users.forEach((usr, index) => {
-        // Soporta tanto usr.apellidos como usr.apellido
         const apellidoMostrar = usr.apellidos || usr.apellido || '';
         
         const tr = document.createElement("tr");
@@ -125,7 +115,6 @@ function renderUsers() {
     });
 }
 
-// Funciones de Eliminación
 function deleteProduct(index) {
     let products = JSON.parse(localStorage.getItem("levelup_productos")) || [];
     products.splice(index, 1);

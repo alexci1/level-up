@@ -42,15 +42,14 @@ function filterProducts() {
 
 }
 
-searchInput.addEventListener("input", filterProducts);
-
-categoryFilter.addEventListener("change", filterProducts)
+if (searchInput) searchInput.addEventListener("input", filterProducts);
+if (categoryFilter) categoryFilter.addEventListener("change", filterProducts);
 
 const addButtons = document.querySelectorAll(".product-card button");
 
 addButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const sesion = obtenerSesionActiva();
+        const sesion = typeof obtenerSesionActiva === "function" ? obtenerSesionActiva() : null;
 
         if (!sesion) {
             alert("Debes iniciar sesión para agregar productos al carrito.");
@@ -75,7 +74,11 @@ addButtons.forEach(button => {
             cantidad: 1
         };
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        // Guardar usando la llave única del usuario actual
+        const emailUsuario = sesion.email.toLowerCase().trim();
+        const llaveUserCart = `cart_${emailUsuario}`;
+
+        let cart = JSON.parse(localStorage.getItem(llaveUserCart)) || [];
 
         const existingProduct = cart.find(
             item => item.id === product.id
@@ -86,10 +89,11 @@ addButtons.forEach(button => {
         } else {
             cart.push(product);
         }
-        localStorage.setItem("cart", JSON.stringify(cart));
+        
+        localStorage.setItem(llaveUserCart, JSON.stringify(cart));
         alert(`¡${productName} agregado al carrito!`);
     });
-})
+});
 
 document.querySelectorAll(".product-card").forEach(card => {
     card.addEventListener("click", (e) => {
@@ -106,7 +110,4 @@ document.querySelectorAll(".product-card").forEach(card => {
 
         window.location.href = "product-detail.html";
     });
-});;
-
-
-
+});

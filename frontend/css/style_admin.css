@@ -1,105 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #121212;
-    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0b0b0f;
+    color: white;
+    min-height: 100vh;
 }
 
 .admin-header {
+    width: 100%;
+    height: 75px;
+    padding: 0 60px;
+    background-color: #111116;
+    border-bottom: 1px solid #25252d;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #1f1f1f;
-    border-bottom: 2px solid #00ff88;
+    justify-content: space-between;
 }
 
 .admin-header .logo a {
-    color: #00ff88;
-    font-weight: bold;
+    color: #00E5FF;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.admin-header .logo a:hover {
+    color: white;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#adminUserEmail {
+    color: #b8b8c2;
+    font-size: 14px;
 }
 
 .btn-logout {
-    background-color: #ff3333;
+    background-color: #ff4d4d;
     color: white;
-    border: none;
-    padding: 0.5rem 1rem;
+    border: 1px solid #ff4d4d;
+    padding: 10px 18px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
     font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #d93636;
+    border-color: #b82e2e;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+    transform: translateY(-2px);
 }
 
 .admin-container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+.admin-container > h1 {
+    text-align: center;
+    color: #00E5FF;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
 }
 
 .crud-section {
-    background: #1e1e1e;
-    padding: 1.5rem;
+    background-color: #15151c;
+    border: 1px solid #25252d;
     border-radius: 8px;
-    margin-top: 1.5rem;
+    padding: 30px;
+    margin-bottom: 30px;
 }
 
 .crud-section h2 {
-    color: #00ff88;
-    margin-bottom: 1rem;
+    color: #00E5FF;
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #25252d;
 }
 
 .crud-form {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
 }
 
 .crud-form input {
-    padding: 0.5rem;
-    border: 1px solid #333;
-    background-color: #2b2b2b;
+    width: 100%;
+    padding: 12px 14px;
+
+    background-color: #0b0b0f;
     color: white;
-    border-radius: 4px;
+
+    border: 1px solid #25252d;
+    border-radius: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+
+    outline: none;
+    transition: 0.3s;
 }
 
+.crud-form input::placeholder {
+    color: #777782;
+}
+
+.crud-form input:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+}
+
+
+/* =========================
+   BOTÓN GUARDAR
+========================= */
+
 .btn-save {
-    background-color: #00ff88;
-    color: #000;
+    padding: 12px 15px;
+
+    background-color: #00BFFF;
+    color: white;
+
+    border: 1px solid #00BFFF;
+    border-radius: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
     font-weight: bold;
-    border: none;
+
     cursor: pointer;
-    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #0284C7;
+    border-color: #0284C7;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 .crud-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    margin-top: 10px;
+    overflow: hidden;
 }
 
-.crud-table th, .crud-table td {
-    border: 1px solid #333;
-    padding: 0.75rem;
+.crud-table th,
+.crud-table td {
+    border: 1px solid #25252d;
+    padding: 14px;
     text-align: left;
+    font-size: 13px;
+    text-align: center;
 }
 
 .crud-table th {
-    background-color: #2a2a2a;
-    color: #00ff88;
+    background-color: #111116;
+    color: #00E5FF;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.crud-table td {
+    color: #b8b8c2;
+    background-color: #15151c;
+}
+
+.crud-table tbody tr {
+    transition: 0.2s;
+}
+
+.crud-table tbody tr:hover td {
+    background-color: #1b1b23;
 }
 
 .btn-delete {
-    background-color: #e63946;
+    background-color: #ff4d4d;
     color: white;
-    border: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    border: 1px solid #ff4d4d;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #d93636;
+    border-color: #b82e2e;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.35);
+}
+
+@media (max-width: 1000px) {
+
+    .admin-header {
+        padding: 0 30px;
+    }
+
+    .admin-container {
+        padding: 50px 20px;
+    }
+
+    .crud-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .crud-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .admin-header {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .user-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .admin-container {
+        padding: 40px 15px;
+    }
+
+    .admin-container > h1 {
+        font-size: 25px;
+    }
+
+    .crud-section {
+        padding: 20px;
+    }
+
+    .crud-form {
+        grid-template-columns: 1fr;
+    }
 }

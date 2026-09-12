@@ -15,17 +15,24 @@
 
         <nav class="nav-bar">
             <div class="logo">
-                <a href="index.html">LEVEL UP GAMER</a>
+                <a href="index.html">
+                    <img src="../img/level-up.png" alt="Logo Level Up Gamer" class="logo-img">
+                    <span>LEVEL UP GAMER</span>
+                </a>
             </div>
+
             <ul class="nav-links">
                 <li>
-                    <a href="index.html">INICIO</a>
+                    <a href="index.html" class="active">INICIO</a>
                 </li>
                 <li>
                     <a href="products.html">PRODUCTOS</a>
                 </li>
                 <li>
-                    <a href="sales.html">OFERTAS</a>
+                    <a href="blogs.html">BLOGS</a>
+                </li>
+                <li>
+                    <a href="contacto.html">CONTACTO</a>
                 </li>
                 <li>
                     <a href="about.html">NOSOTROS</a>
@@ -47,6 +54,7 @@
     </header>
 
     <main class="detail-section">
+
         <div id="detailContainer" class="detail-card">
 
             <div class="detail-image-container">
@@ -67,10 +75,42 @@
                     </div>
                 </div>
 
+                <div class="detail-rating-container">
+                    <div id="detailStars" class="detail-stars"></div>
+                    <span id="detailRatingText" class="detail-rating-text"></span>
+                </div>
+
                 <button id="btnAddToCartDetail" class="detail-add-btn">AGREGAR AL CARRITO</button>
             </div>
 
         </div>
+
+        <div class="reviews-section">
+            <h2>RESEÑAS Y VALORACIONES DE JUGADORES</h2>
+
+            <form id="reviewForm" class="review-form">
+                <h3>DEJA TU VALORACIÓN</h3>
+
+                <div class="star-rating-selector">
+                    <span>CALIFICACIÓN:</span>
+                    <div class="stars-input">
+                        <ion-icon name="star-outline" data-value="1"></ion-icon>
+                        <ion-icon name="star-outline" data-value="2"></ion-icon>
+                        <ion-icon name="star-outline" data-value="3"></ion-icon>
+                        <ion-icon name="star-outline" data-value="4"></ion-icon>
+                        <ion-icon name="star-outline" data-value="5"></ion-icon>
+                    </div>
+                </div>
+
+                <textarea id="reviewComment" placeholder="Escribe tu opinión sobre el producto..." rows="4"
+                    required></textarea>
+                <button type="submit" class="btn-submit-review">PUBLICAR RESEÑA</button>
+            </form>
+
+            <div id="reviewsContainer" class="reviews-container">
+            </div>
+        </div>
+
     </main>
 
     <footer class="footer">

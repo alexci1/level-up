@@ -12,30 +12,20 @@
 <body>
 
     <header>
-
         <nav class="nav-bar">
             <div class="logo">
-                <a href="index.html">LEVEL UP GAMER</a>
+                <a href="index.html">
+                    <img src="../img/level-up.png" alt="Logo Level Up Gamer" class="logo-img">
+                    <span>LEVEL UP GAMER</span>
+                </a>
             </div>
+
             <ul class="nav-links">
-                <li>
-                    <a href="index.html">INICIO</a>
-                </li>
-                <li>
-                    <a href="products.html">PRODUCTOS</a>
-                </li>
-                <li>
-                    <a href="sales.html">OFERTAS</a>
-                </li>
-                <li>
-                    <a href="blogs.html">BLOGS</a>
-                </li>
-                <li>
-                    <a href="contacto.html">CONTACTO</a>
-                </li>
-                <li>
-                    <a href="about.html">NOSOTROS</a>
-                </li>
+                <li><a href="index.html" class="active">INICIO</a></li>
+                <li><a href="products.html">PRODUCTOS</a></li>
+                <li><a href="blogs.html">BLOGS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="about.html">NOSOTROS</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="login.html" class="login-link">
@@ -43,92 +33,138 @@
                     <span>INICIAR SESIÓN</span>
                 </a>
                 <span class="separator">|</span>
-                <a href="cart.html" class="cart-link active">
+                <a href="cart.html" class="cart-link">
                     <ion-icon name="cart"></ion-icon>
                     <span>CARRITO</span>
                 </a>
             </div>
         </nav>
-
     </header>
+    <main>
+        <div class="cart-section">
+            <h1>MI CARRITO DE COMPRAS</h1>
 
-    <main class="cart-section">
-        <h1>MI CARRITO DE COMPRAS</h1>
+            <div class="cart-layout">
+                <div class="cart-products">
+                    <div class="cart-header">
+                        <span></span>
+                        <span>PRODUCTO</span>
+                        <span>PRECIO</span>
+                        <span>CANTIDAD</span>
+                        <span>TOTAL</span>
+                        <span></span>
+                    </div>
 
-        <div class="cart-layout">
-            <div class="cart-items" id="cartContainer">
-                <!-- Los productos agregados se renderizan dinámicamente aquí -->
+                    <div class="cart-items" id="cartContainer">
+                    </div>
+                </div>
+
+                <aside class="cart-summary">
+                    <h2>RESUMEN DE COMPRA</h2>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotalAmount">$0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Neto:</span>
+                        <span id="netAmount">$0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>IVA (19%):</span>
+                        <span id="ivaAmount">$0</span>
+                    </div>
+
+                    <div class="summary-row discount-row" id="discountRow" style="display: none; color: #00ff88;">
+                        <span>Descuento DuocUC (20%):</span>
+                        <span id="discountAmount">-$0</span>
+                    </div>
+
+                    <div class="summary-row total-row">
+                        <span>TOTAL:</span>
+                        <span id="totalAmount">$0</span>
+                    </div>
+                    <button id="btnCheckout" class="checkout-btn">PROCEDER AL PAGO</button>
+                    <button id="btnClearCart" class="clear-btn">VACIAR CARRITO</button>
+                </aside>
             </div>
-
-            <aside class="cart-summary">
-                <h2>RESUMEN DE COMPRA</h2>
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span id="subtotalAmount">$0</span>
-                </div>
-
-                <!-- FILA DE DESCUENTO DUOCUC AÑADIDA -->
-                <div class="summary-row discount-row" id="discountRow" style="display: none; color: #00ff88;">
-                    <span>Descuento DuocUC (20%):</span>[cite: 2]
-                    <span id="discountAmount">-$0</span>
-                </div>
-
-                <div class="summary-row total-row">
-                    <span>TOTAL:</span>
-                    <span id="totalAmount">$0</span>
-                </div>
-                <button id="btnCheckout" class="checkout-btn">PROCEDER AL PAGO</button>
-                <button id="btnClearCart" class="clear-btn">VACIAR CARRITO</button>
-            </aside>
         </div>
     </main>
 
     <footer class="footer">
         <ul class="social-icon">
-            <li class="icon-elem">
-                <a href="" class="icon" target="_blank">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                </a>
-            </li>
-            <li class="icon-elem">
-                <a href="" class="icon">
-                    <ion-icon name="logo-whatsapp"></ion-icon>
-                </a>
-            </li>
-            <li class="icon-elem">
-                <a href="" class="icon" target="_blank">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                </a>
-            </li>
-            <li class="icon-elem">
-                <a href="" class="icon">
-                    <ion-icon name="mail-outline"></ion-icon>
-                </a>
-            </li>
+            <li class="icon-elem"><a href="" class="icon" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li class="icon-elem"><a href="" class="icon"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+            <li class="icon-elem"><a href="" class="icon" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li class="icon-elem"><a href="" class="icon"><ion-icon name="mail-outline"></ion-icon></a></li>
         </ul>
         <ul class="menu">
-            <li class="menu-elem">
-                <a href="index.html" class="menu-icon">Inicio</a>
-            </li>
-            <li class="menu-elem">
-                <a href="blogs.html" class="menu-icon">Blogs</a>
-            </li>
-            <li class="menu-elem">
-                <a href="contacto.html" class="menu-icon">Contacto</a>
-            </li>
-            <li class="menu-elem">
-                <a href="about.html" class="menu-icon">Nosotros</a>
-            </li>
+            <li class="menu-elem"><a href="index.html" class="menu-icon">Inicio</a></li>
+            <li class="menu-elem"><a href="blogs.html" class="menu-icon">Blogs</a></li>
+            <li class="menu-elem"><a href="contacto.html" class="menu-icon">Contacto</a></li>
+            <li class="menu-elem"><a href="about.html" class="menu-icon">Nosotros</a></li>
         </ul>
         <p class="text">© 2026 | Todos los derechos reservados | Santiago de Chile</p>
     </footer>
+
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closePaymentModal" class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2><ion-icon name="card-outline"></ion-icon> PASARELA DE PAGO</h2>
+                <p>LEVEL UP PAY - PAGO SEGURO 256-BIT</p>
+            </div>
+            <div class="payment-methods">
+                <button type="button" class="method-btn active" data-method="card">
+                    <ion-icon name="card"></ion-icon> Tarjeta Débito / Crédito
+                </button>
+                <button type="button" class="method-btn" data-method="webpay">
+                    <ion-icon name="swap-horizontal-outline"></ion-icon> Webpay / Transferencia
+                </button>
+            </div>
+            <form id="paymentForm" class="payment-form">
+                <div id="cardSection">
+                    <div class="form-group">
+                        <label for="cardName">TITULAR DE LA TARJETA</label>
+                        <input type="text" id="cardName" placeholder="Ej: MATIAS LATRACH" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">NÚMERO DE TARJETA</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardExp">EXPIRACIÓN</label>
+                            <input type="text" id="cardExp" placeholder="MM/AA" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvc">CVC / CVV</label>
+                            <input type="password" id="cardCvc" placeholder="123" maxlength="4" required>
+                        </div>
+                    </div>
+                </div>
+                <div id="webpaySection" style="display: none;" class="webpay-info">
+                    <p>Serás redirigido a la plataforma de pago seguro de Tu Banco / Webpay al confirmar.</p>
+                </div>
+                <div class="payment-summary">
+                    <span>TOTAL A PAGAR:</span>
+                    <strong id="modalPayTotal">$0</strong>
+                </div>
+                <button type="submit" id="btnConfirmPay" class="btn-confirm-pay">CONFIRMAR Y PAGAR</button>
+            </form>
+            <div id="paymentLoading" class="payment-loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Procesando pago seguro con tu banco...</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/cart.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/products.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-
 </body>
 
 </html>

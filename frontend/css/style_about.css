@@ -39,6 +39,15 @@ header {
     color: #00E5FF;
     padding: 10px;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 40px; 
+    width: auto;  
+    object-fit: contain;
 }
 
 
@@ -63,13 +72,13 @@ header {
     opacity: 0.5;
 }
 
-.nav-actions  {
-   display: flex;
-   align-items: center;
-   gap: 15px;
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.nav-actions a{
+.nav-actions a {
     color: #00E5FF;
     text-decoration: none;
     display: flex;
@@ -77,33 +86,54 @@ header {
     transition: 0.3s;
 }
 
-.login-link{
+.nav-actions a:hover {
+    color: white;
+}
+
+.login-link {
     gap: 7px;
     font-size: 14px;
     font-weight: bold;
 }
 
-.login-link ion-icon{
+.login-link ion-icon {
     font-size: 27px;
 }
 
-.cart-link{
+.cart-link {
     gap: 7px;
     font-size: 14px;
     font-weight: bold;
 }
 
-.cart-link ion-icon{
+.cart-link ion-icon {
     font-size: 27px;
 }
 
-.separator{
+.separator {
     color: white;
     font-size: 20px;
 }
 
 .nav-actions a:hover {
     color: white;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    background-image: 
+        linear-gradient(
+            to bottom, 
+            rgba(11, 11, 15, 0.75) 0%, 
+            rgba(11, 11, 15, 0.85) 50%,  
+            rgba(11, 11, 15, 0.95) 100%  
+        ), 
+        url('../img/fondo.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .about{
@@ -477,7 +507,6 @@ header {
     border-color: #00E5FF;
 }
 
-/* ================= SOPORTE WHATSAPP ================= */
 .support-section {
     max-width: 1200px;
     margin: 80px auto 0;
@@ -525,7 +554,6 @@ header {
     box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
 }
 
-/* BOTÓN FLOTANTE */
 .whatsapp-float {
     position: fixed;
     width: 60px;

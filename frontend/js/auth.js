@@ -1,8 +1,5 @@
-// auth.js - Versión Unificada y Corregida
-
-// 1. Datos del Administrador Predeterminado
 const DEFAULT_ADMIN = {
-    run: "111111111", // Sin puntos ni guión para pasar validación de RUT
+    run: "111111111", 
     nombre: "Administrador",
     apellidos: "General",
     email: "admin@duoc.cl",
@@ -13,7 +10,57 @@ const DEFAULT_ADMIN = {
     rol: "Administrador"
 };
 
-// 2. Funciones de Lectura/Escritura en localStorage
+const DEFAULT_CLIENT = {
+    run: "19011022K",
+    nombre: "Matias",
+    apellidos: "Latrach",
+    email: "matias@duoc.cl",
+    fechaNacimiento: "2000-08-22",
+    referido: "",
+    password: "matias123",
+    descuentoDuoc: true,
+    rol: "Cliente",
+    avatar: "../img/icons/Monkey.avif",
+    direccion: "Av. Siempre Viva 742",
+    region: "Región Metropolitana",
+    comuna: "Santiago",
+    telefono: "+56 9 1234 5678"
+};
+
+const DEFAULT_CLIENT_2 = {
+    run: "182345674",
+    nombre: "Alex",
+    apellidos: "Carita",
+    email: "alex@duoc.cl",
+    fechaNacimiento: "1999-05-14",
+    referido: "",
+    password: "alex123",
+    descuentoDuoc: true,
+    rol: "Cliente",
+    avatar: "../img/icons/Panda.avif",
+    direccion: "Av. Vicuña Mackenna 456",
+    region: "Región Metropolitana",
+    comuna: "Providencia",
+    telefono: "+56 9 8765 4321"
+};
+
+const DEFAULT_CLIENT_3 = {
+    run: "201234568",
+    nombre: "Andres",
+    apellidos: "Bustamante",
+    email: "andres@duoc.cl",
+    fechaNacimiento: "2001-11-30",
+    referido: "",
+    password: "andres123",
+    descuentoDuoc: true,
+    rol: "Cliente",
+    avatar: "../img/icons/Blue-Face-Man.avif",
+    direccion: "Calle Las Condes 7890",
+    region: "Región Metropolitana",
+    comuna: "Las Condes",
+    telefono: "+56 9 5555 1234"
+};
+
 function obtenerUsuarios() {
     return JSON.parse(localStorage.getItem('levelup_usuarios')) || [];
 }
@@ -33,18 +80,25 @@ function cerrarSesion() {
     window.location.href = 'index.html';
 }
 
-// Data Initializer: Inyecta el usuario admin si no existe en la lista unificada
 function initData() {
     let usuarios = obtenerUsuarios();
-    const existeAdmin = usuarios.some(usr => usr.email.toLowerCase() === DEFAULT_ADMIN.email.toLowerCase());
+    let huboCambios = false;
 
-    if (!existeAdmin) {
-        usuarios.push(DEFAULT_ADMIN);
+    const usuariosIniciales = [DEFAULT_ADMIN, DEFAULT_CLIENT, DEFAULT_CLIENT_2, DEFAULT_CLIENT_3];
+
+    usuariosIniciales.forEach(usrDefault => {
+        const existe = usuarios.some(usr => usr.email.toLowerCase() === usrDefault.email.toLowerCase());
+        if (!existe) {
+            usuarios.push(usrDefault);
+            huboCambios = true;
+        }
+    });
+
+    if (huboCambios) {
         localStorage.setItem('levelup_usuarios', JSON.stringify(usuarios));
     }
 }
 
-// 3. Funciones de Validación
 function validarEmailDominio(email) {
     const dominiosValidos = ['@duoc.cl', '@duocuc.cl', '@profesor.duoc.cl', '@gmail.com'];
     return dominiosValidos.some(dominio => email.toLowerCase().endsWith(dominio));
@@ -70,11 +124,9 @@ function validarRutChileno(rutFull) {
     return dv === dvEsperado;
 }
 
-// 4. Manejo de Formularios y Carga de Vista
 document.addEventListener('DOMContentLoaded', () => {
-    initData(); // Inicializa al admin
+    initData();
 
-    // --- FORMULARIO DE REGISTRO ---
     const registroForm = document.getElementById('registroForm');
     if (registroForm) {
         registroForm.addEventListener('submit', (e) => {
@@ -160,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 guardarUsuario(nuevoUsuario);
-                localStorage.removeItem('levelup_sesion_activa'); 
+                localStorage.removeItem('levelup_sesion_activa');
 
                 alert('¡Cuenta creada con éxito! Ahora puedes iniciar sesión');
                 window.location.href = 'login.html';
@@ -168,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FORMULARIO DE LOGIN UNIFICADO ---
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -207,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`¡Bienvenido de vuelta, ${usuarioEncontrado.nombre}!`);
 
                 if (usuarioEncontrado.rol === 'Administrador') {
-                    window.location.href = 'admin.html'; // Cambiar por 'admin-dashboard.html' si usas ese nombre de archivo
+                    window.location.href = 'admin.html';
                 } else {
                     window.location.href = 'index.html';
                 }
@@ -217,21 +268,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- RENDERIZADO DE BARRA DE NAVEGACIÓN ---
     const sesion = obtenerSesionActiva();
     const navActions = document.querySelector('.nav-actions');
 
     if (sesion && navActions) {
+        const avatarUser = sesion.avatar || '../img/icons/Mouse.avif';
+
         navActions.innerHTML = `
-            <span style="color: #00E5FF; font-weight: bold; font-size: 14px;">Hola, ${sesion.nombre}</span>
-            ${sesion.rol === 'Administrador' ? `<a href="admin.html" style="color:#00ff88; font-weight:bold; margin-left:10px;">[ADMIN]</a>` : ''}
+            <a href="profile.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+                <img src="${avatarUser}" alt="Avatar" style="width:32px; height:32px; border-radius:50%; border:2px solid #00E5FF; object-fit:cover; background:#0b0b0f;">
+                <span style="color: #00E5FF; font-weight: bold; font-size: 14px;">${sesion.nombre}</span>
+            </a>
+            ${sesion.rol === 'Administrador' ? `<a href="admin.html" style="color:#00ff88; font-size: 14px; font-weight:bold; margin-left:5px;">[ADMIN]</a>` : ''}
             <span class="separator"> | </span>
             <a href="cart.html" class="cart-link">
                 <ion-icon name="cart"></ion-icon>
                 <span>CARRITO</span>
             </a>
             <span class="separator">|</span>
-            <button id="btnLogout" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-weight:bold; font-family:'Montserrat';">CERRAR SESIÓN</button>
+            <button id="btnLogout" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size: 14px; font-weight:bold; font-family:'Montserrat';">CERRAR SESION</button>
         `;
 
         document.getElementById('btnLogout').addEventListener('click', cerrarSesion);
