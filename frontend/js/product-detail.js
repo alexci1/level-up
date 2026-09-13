@@ -86,28 +86,53 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const precioLimpio = Number(
-                selectedProduct.precio.replace("$", "").replace(/\./g, "")
-            );
+            // 1. Limpieza estricta del precio a valor numérico entero
+            let precioLimpio = 0;
+            if (typeof selectedProduct.precio === "number") {
+                precioLimpio = selectedProduct.precio;
+            } else if (typeof selectedProduct.precio === "string") {
+                precioLimpio = Number(selectedProduct.precio.replace(/[^0-9]/g, "")) || 0;
+            }
+
+            // 2. Generación de un ID único compatible
+            const idProducto = selectedProduct.id || selectedProduct.codigo || selectedProduct.nombre;
 
             const productoParaCarrito = {
-                id: selectedProduct.nombre,
+                id: idProducto,
+                codigo: idProducto,
                 nombre: selectedProduct.nombre,
                 precio: precioLimpio,
                 imagen: selectedProduct.imagen,
                 cantidad: cantidad
             };
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const existe = cart.find(item => item.id === productoParaCarrito.id);
+            // 3. Clave dinámica por usuario (ej: cart_andres@duoc.cl) y clave general 'cart' por respaldo
+            const userEmail = sesion.correo || sesion.email || sesion.usuario || sesion.nombre;
+            const userCartKey = `cart_${userEmail}`;
 
-            if (existe) {
-                existe.cantidad += cantidad;
+            // Determinar qué clave de localStorage está en uso actualmente
+            let cartKeyToUse = "cart";
+            if (localStorage.getItem(userCartKey)) {
+                cartKeyToUse = userCartKey;
+            } else if (!localStorage.getItem("cart") && userEmail) {
+                cartKeyToUse = userCartKey;
+            }
+
+            let cart = JSON.parse(localStorage.getItem(cartKeyToUse)) || [];
+
+            // 4. Buscar si ya existe el ítem en la lista
+            const existeIndex = cart.findIndex(item => item.id === idProducto || item.nombre === selectedProduct.nombre);
+
+            if (existeIndex !== -1) {
+                cart[existeIndex].cantidad += cantidad;
             } else {
                 cart.push(productoParaCarrito);
             }
 
+            // 5. Guardar en ambas claves para garantizar la lectura desde cart.html
+            localStorage.setItem(cartKeyToUse, JSON.stringify(cart));
             localStorage.setItem("cart", JSON.stringify(cart));
+
             alert(`¡${cantidad}x ${selectedProduct.nombre} agregado(s) al carrito!`);
         });
     }
