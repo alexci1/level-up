@@ -240,10 +240,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let userOrders = JSON.parse(localStorage.getItem(userOrdersKey)) || [];
 
+                let productosInventario = JSON.parse(localStorage.getItem("levelup_productos")) || [];
+
+                cart.forEach(itemCart => {
+                    const indexProd = productosInventario.findIndex(p => p.name.toUpperCase().trim() === itemCart.nombre.toUpperCase().trim());
+                    if (indexProd !== -1) {
+                        productosInventario[indexProd].stock -= itemCart.cantidad;
+                        if (productosInventario[indexProd].stock < 0) {
+                            productosInventario[indexProd].stock = 0;
+                        }
+                    }
+                });
+
+                localStorage.setItem("levelup_productos", JSON.stringify(productosInventario));
+
                 const nuevaOrden = {
                     id: `ORD-2026-${Math.floor(1000 + Math.random() * 9000)}`,
                     fecha: new Date().toLocaleDateString("es-CL"),
-                    estado: "EN CAMINO",
+                    estado: "En Camino",
                     total: currentPayTotal,
                     productos: cart.map(item => ({
                         nombre: item.nombre,
@@ -255,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 userOrders.unshift(nuevaOrden);
                 localStorage.setItem(userOrdersKey, JSON.stringify(userOrders));
-                
+
                 localStorage.removeItem(obtenerLlaveCarrito());
 
                 paymentLoading.style.display = 'none';

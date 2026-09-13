@@ -15,6 +15,8 @@ body {
     background-color: #0b0b0f;
     color: white;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-header {
@@ -23,7 +25,6 @@ body {
     padding: 0 60px;
     background-color: #111116;
     border-bottom: 1px solid #25252d;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,13 +53,14 @@ body {
 #adminUserEmail {
     color: #b8b8c2;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .btn-logout {
     background-color: #ff4d4d;
     color: white;
     border: 1px solid #ff4d4d;
-    padding: 10px 18px;
+    padding: 8px 16px;
     cursor: pointer;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
@@ -70,14 +72,16 @@ body {
 .btn-logout:hover {
     background-color: #d93636;
     border-color: #b82e2e;
-    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
     transform: translateY(-2px);
 }
 
 .admin-container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 60px 30px;
+    padding: 50px 30px;
+    width: 100%;
+    flex: 1;
 }
 
 .admin-container > h1 {
@@ -85,7 +89,7 @@ body {
     color: white;
     font-size: 32px;
     letter-spacing: 2px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .crud-section {
@@ -94,36 +98,39 @@ body {
     border-radius: 8px;
     padding: 30px;
     margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .crud-section h2 {
     color: #00E5FF;
     font-size: 20px;
     margin-bottom: 25px;
-    padding-bottom: 15px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #25252d;
+    letter-spacing: 1px;
 }
+
+/* =========================
+   FORMULARIO DE PRODUCTOS (GRID OPTIMIZADO)
+========================= */
 
 .crud-form {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
     margin-bottom: 25px;
 }
 
-.crud-form input {
+.crud-form input[type="text"],
+.crud-form input[type="number"] {
     width: 100%;
     padding: 12px 14px;
-
     background-color: #0b0b0f;
     color: white;
-
     border: 1px solid #25252d;
     border-radius: 5px;
-
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-
     outline: none;
     transition: 0.3s;
 }
@@ -134,9 +141,41 @@ body {
 
 .crud-form input:focus {
     border-color: #00E5FF;
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
+/* Estilo personalizado para el input de archivo (subir foto) */
+.crud-form input[type="file"] {
+    width: 100%;
+    padding: 9px 12px;
+    background-color: #0b0b0f;
+    color: #b8b8c2;
+    border: 1px solid #25252d;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.crud-form input[type="file"]::file-selector-button {
+    background-color: #25252d;
+    color: #00E5FF;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.crud-form input[type="file"]::file-selector-button:hover {
+    background-color: #00E5FF;
+    color: #0b0b0f;
+}
 
 /* =========================
    BOTÓN GUARDAR
@@ -144,42 +183,45 @@ body {
 
 .btn-save {
     padding: 12px 15px;
-
-    background-color: #00BFFF;
-    color: white;
-
-    border: 1px solid #00BFFF;
+    background-color: #00E5FF;
+    color: #0b0b0f;
+    border: 1px solid #00E5FF;
     border-radius: 5px;
-
     font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
-
     cursor: pointer;
     transition: 0.3s;
+    grid-column: span 3;
+    letter-spacing: 1px;
 }
 
 .btn-save:hover {
-    background-color: #0284C7;
-    border-color: #0284C7;
+    background-color: white;
+    border-color: white;
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
     transform: translateY(-2px);
 }
+
+/* =========================
+   TABLAS CRUD
+========================= */
 
 .crud-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
     overflow: hidden;
+    border-radius: 6px;
 }
 
 .crud-table th,
 .crud-table td {
     border: 1px solid #25252d;
     padding: 14px;
-    text-align: left;
     font-size: 13px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .crud-table th {
@@ -201,14 +243,15 @@ body {
 
 .crud-table tbody tr:hover td {
     background-color: #1b1b23;
+    color: white;
 }
 
 .btn-delete {
-    background-color: #ff4d4d;
-    color: white;
+    background-color: rgba(255, 77, 77, 0.15);
+    color: #ff4d4d;
     border: 1px solid #ff4d4d;
-    padding: 8px 14px;
-    border-radius: 5px;
+    padding: 6px 12px;
+    border-radius: 4px;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -217,23 +260,30 @@ body {
 }
 
 .btn-delete:hover {
-    background-color: #d93636;
-    border-color: #b82e2e;
-    box-shadow: 0 0 15px rgba(255, 77, 77, 0.35);
+    background-color: #ff4d4d;
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
 }
 
-@media (max-width: 1000px) {
+/* =========================
+   MEDIA QUERIES (RESPONSIVO)
+========================= */
 
+@media (max-width: 1000px) {
     .admin-header {
         padding: 0 30px;
     }
 
     .admin-container {
-        padding: 50px 20px;
+        padding: 40px 20px;
     }
 
     .crud-form {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-save {
+        grid-column: span 2;
     }
 
     .crud-table {
@@ -243,14 +293,13 @@ body {
     }
 }
 
-
 @media (max-width: 650px) {
-
     .admin-header {
         height: auto;
         padding: 20px;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        text-align: center;
     }
 
     .user-info {
@@ -259,11 +308,11 @@ body {
     }
 
     .admin-container {
-        padding: 40px 15px;
+        padding: 30px 15px;
     }
 
     .admin-container > h1 {
-        font-size: 25px;
+        font-size: 24px;
     }
 
     .crud-section {
@@ -272,5 +321,9 @@ body {
 
     .crud-form {
         grid-template-columns: 1fr;
+    }
+
+    .btn-save {
+        grid-column: span 1;
     }
 }

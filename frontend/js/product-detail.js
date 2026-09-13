@@ -6,21 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    const allProducts = JSON.parse(localStorage.getItem("levelup_productos")) || [];
+    const productoEnInventario = allProducts.find(p => p.name.toUpperCase().trim() === selectedProduct.nombre.toUpperCase().trim());
+
+    let stockDisponible = productoEnInventario ? productoEnInventario.stock : 10;
+
     const descripcionesProductos = {
         "SILLA GAMER COUGAR": "Diseñada ergonómicamente para largas jornadas de juego. Cuenta con estructura de acero de alta resistencia, inclinación reclinable hasta 180°, bordado de alta precisión y almohadillas lumbar y cervical ajustables para máxima comodidad.",
-        
         "NOTEBOOK ASUS TUF A15": "Procesador de alto rendimiento combinado con gráficos dedicados de última generación. Pantalla de alta tasa de refresco, refrigeración mejorada con tecnología de auto-limpieza y certificación militar de durabilidad para resistir cualquier partida intensa.",
-        
         "PLAYSTATION 5": "Disfruta de tiempos de carga ultrarrápidos con su SSD de alta velocidad, inmersión profunda con retroalimentación háptica, gatillos adaptativos y audio 3D. Descubre una generación de increíbles juegos de PlayStation con gráficos impresionantes.",
-        
         "MOUSE GAMER LOGITECH": "Sensor óptico de alta precisión con aceleración cero. Diseño ergonómico ultraligero, botones con switches mecánicos de respuesta inmediata y programación de macros mediante software para dominar en cualquier título competitivo.",
-        
         "CATAN": "El galardonado juego de mesa de estrategia donde la negociación, el comercio y la astucia son clave. Construye pueblos, carreteras y ciudades en una isla en constante cambio. Ideal para tardes de juego con amigos y familia.",
-        
         "SONY PULSE ELITE": "Auriculares inalámbricos de gama alta optimizados para audio 3D. Equipados con controladores magnéticos planares, micrófono retráctil con cancelación de ruido mejorada por IA y batería de larga duración con carga rápida.",
-        
         "LOGITECH G440": "Superficie de fricción ultrasuave diseñada para ratones de alto DPI. Su estructura de polímero rígido proporciona la resistencia óptima para movimientos rápidos y precisos en juegos de estrategia e esports.",
-        
         "POLERA GAMER ZONE": "Confeccionada 100% en algodón peinado de alta calidad. Diseño exclusivo con estampado en serigrafía de alta durabilidad resistente a lavados. Corte cómodo e ideal para lucir tu pasión gamer en cualquier lugar."
     };
 
@@ -28,18 +26,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailPrice = document.getElementById("detailPrice");
     const detailImage = document.getElementById("detailImage");
     const detailDescription = document.getElementById("detailDescription");
+    const detailStock = document.getElementById("detailStock");
 
     if (detailTitle) detailTitle.textContent = selectedProduct.nombre;
     if (detailPrice) detailPrice.textContent = selectedProduct.precio;
+
+    if (detailStock) {
+        if (stockDisponible > 0) {
+            detailStock.textContent = `Stock disponible: ${stockDisponible} unidades`;
+            detailStock.style.color = "#00ff88";
+        } else {
+            detailStock.textContent = `¡Producto agotado!`;
+            detailStock.style.color = "#ff4d4d";
+        }
+    }
+
     if (detailImage) {
         detailImage.setAttribute("src", selectedProduct.imagen);
         detailImage.setAttribute("alt", selectedProduct.nombre);
     }
-    
-    
+
     if (detailDescription) {
         const nombreUpper = selectedProduct.nombre ? selectedProduct.nombre.toUpperCase().trim() : "";
-        
         let descEncontrada = "";
         for (const [key, desc] of Object.entries(descripcionesProductos)) {
             if (nombreUpper.includes(key) || key.includes(nombreUpper)) {
@@ -47,8 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             }
         }
-
-        detailDescription.textContent = descEncontrada || 
+        detailDescription.textContent = descEncontrada ||
             `El ${selectedProduct.nombre} está equipado con especificaciones de vanguardia diseñadas para ofrecer un rendimiento superior. Garantizado por Level Up Gamer con respaldo de calidad.`;
     }
 
@@ -59,9 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnPlus) {
         btnPlus.addEventListener("click", () => {
-            if (cantidad < 10) {
+            if (cantidad < stockDisponible) {
                 cantidad++;
                 if (quantityText) quantityText.textContent = cantidad;
+            } else {
+                alert(`No puedes agregar más de ${stockDisponible} unidades (Stock máximo alcanzado).`);
             }
         });
     }
@@ -78,6 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAdd = document.getElementById("btnAddToCartDetail");
     if (btnAdd) {
         btnAdd.addEventListener("click", () => {
+            if (stockDisponible <= 0) {
+                alert("Lo sentimos, este producto está agotado.");
+                return;
+            }
+
             const sesion = typeof obtenerSesionActiva === "function" ? obtenerSesionActiva() : null;
 
             if (!sesion) {
@@ -98,7 +112,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 cantidad: cantidad
             };
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const emailUsuario = sesion.email.toLowerCase().trim();
+            const llaveUserCart = `cart_${emailUsuario}`;
+
+            let cart = JSON.parse(localStorage.getItem(llaveUserCart)) || [];
             const existe = cart.find(item => item.id === productoParaCarrito.id);
 
             if (existe) {
@@ -107,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 cart.push(productoParaCarrito);
             }
 
-            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem(llaveUserCart, JSON.stringify(cart));
             alert(`¡${cantidad}x ${selectedProduct.nombre} agregado(s) al carrito!`);
         });
     }
@@ -158,9 +175,24 @@ document.addEventListener("DOMContentLoaded", () => {
         detailRatingText.textContent = `${promedio} / 5 (${reviews.length} ${reviews.length === 1 ? 'reseña' : 'reseñas'})`;
     }
 
-    function cargarResenas() {
+function cargarResenas() {
         const reviewsContainer = document.getElementById("reviewsContainer");
-        const reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+        let reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+        const listaUsuarios = JSON.parse(localStorage.getItem("levelup_usuarios")) || [];
+
+        let huboCambios = false;
+        reviews = reviews.map(r => {
+            const usuarioEncontrado = listaUsuarios.find(u => u.nombre.toLowerCase() === r.usuario.toLowerCase());
+            if (usuarioEncontrado && usuarioEncontrado.avatar && usuarioEncontrado.avatar !== r.avatar) {
+                huboCambios = true;
+                return { ...r, avatar: usuarioEncontrado.avatar };
+            }
+            return r;
+        });
+
+        if (huboCambios) {
+            localStorage.setItem(reviewsKey, JSON.stringify(reviews));
+        }
 
         actualizarCalificacionPromedio(reviews);
 
@@ -175,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-user">
-                        <img src="${r.avatar || '../img/icons/Mouse.avif'}" alt="Avatar">
+                        <img src="${r.avatar || '../img/icons/Mouse.avif'}" alt="Avatar" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; background: #0b0b0f; border: 1px solid #00E5FF;">
                         <span>${r.usuario}</span>
                     </div>
                     <div class="review-stars">
@@ -188,6 +220,47 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join('');
     }
 
+    function initDefaultReviews() {
+        let reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+
+        if (reviews.length === 0) {
+            const nombreProd = selectedProduct.nombre.toUpperCase();
+
+            const avatarMatias = "../img/icons/Monkey.avif";
+            const avatarAlex = "../img/icons/Panda.avif";
+            const avatarAndres = "../img/icons/Blue-Face-Man.avif";
+
+            if (nombreProd.includes("CATAN")) {
+                reviews = [
+                    { usuario: "Matías", avatar: avatarMatias, rating: 5, comentario: "¡El clásico de clásicos! Las partidas con los amigos duran horas de pura estrategia y negociaciones fallidas de trigo. 10/10.", fecha: "08/09/2026" },
+                    { usuario: "Alex", avatar: avatarAlex, rating: 4, comentario: "Muy buen juego de mesa, los materiales son resistentes. Lo único malo es que siempre me roban el ladrillo.", fecha: "09/09/2026" },
+                    { usuario: "Andrés", avatar: avatarAndres, rating: 5, comentario: "Excelente para juntarse un fin de semana. Las reglas son fáciles de aprender y las partidas son súper reñidas.", fecha: "10/09/2026" }
+                ];
+            } else if (nombreProd.includes("PLAYSTATION") || nombreProd.includes("PS5")) {
+                reviews = [
+                    { usuario: "Matías", avatar: avatarMatias, rating: 5, comentario: "Simplemente una bestia. Los tiempos de carga no existen y el mando DualSense te cambia la experiencia por completo.", fecha: "05/09/2026" },
+                    { usuario: "Alex", avatar: avatarAlex, rating: 5, comentario: "La mejor inversión del año. Los gráficos en 4K son una locura total, vale cada peso.", fecha: "07/09/2026" },
+                    { usuario: "Andrés", avatar: avatarAndres, rating: 4, comentario: "Es grandota y hay que hacer espacio en el mueble, pero en rendimiento se lleva aplausos de pie.", fecha: "11/09/2026" }
+                ];
+            } else if (nombreProd.includes("SILLA")) {
+                reviews = [
+                    { usuario: "Matías", avatar: avatarMatias, rating: 5, comentario: "Mi espalda te lo agradece. Me puedo echar 8 horas jugando y cero dolores lumbares. Muy firme.", fecha: "02/09/2026" },
+                    { usuario: "Alex", avatar: avatarAlex, rating: 3, comentario: "Es cómoda, aunque el armado me dio un poco de dolor de cabeza al principio. Una vez lista, todo bien.", fecha: "06/09/2026" },
+                    { usuario: "Andrés", avatar: avatarAndres, rating: 5, comentario: "Los materiales se sienten de alta gama y el cojín cervical queda a la altura justa. Muy buen diseño.", fecha: "09/09/2026" }
+                ];
+            } else {
+                reviews = [
+                    { usuario: "Matías", avatar: avatarMatias, rating: 5, comentario: "¡Excelente producto! Cumple con todo lo prometido y llegó super rápido.", fecha: "10/09/2026" },
+                    { usuario: "Alex", avatar: avatarAlex, rating: 4, comentario: "Buen rendimiento, aunque el envío demoró un día más de lo esperado. El producto impecable eso sí.", fecha: "11/09/2026" },
+                    { usuario: "Andrés", avatar: avatarAndres, rating: 5, comentario: "Una maravilla, la relación precio-calidad es insuperable. Level Up se lució.", fecha: "12/09/2026" }
+                ];
+            }
+
+            localStorage.setItem(reviewsKey, JSON.stringify(reviews));
+        }
+    }
+
+    initDefaultReviews();
     cargarResenas();
 
     const reviewForm = document.getElementById("reviewForm");
@@ -207,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const nuevaResena = {
                 usuario: sesion.nombre,
-                avatar: sesion.avatar || "../img/icons/Mouse.avif",
+                avatar: sesion.avatar || "../img/icons/Mouse.avif", // Toma el avatar seleccionado en su sesión
                 rating: selectedRating,
                 comentario: comentario,
                 fecha: new Date().toLocaleDateString("es-CL")

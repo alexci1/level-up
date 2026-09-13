@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/style_admin.css">
     <link rel="icon" type="image/png" href="../img/level-up.png">
 </head>
+
 <body>
 
     <header class="admin-header">
@@ -25,12 +27,34 @@
         <section class="crud-section">
             <h2>Gestión de Productos</h2>
             <form id="productForm" class="crud-form">
-                <input type="text" id="prodCode" placeholder="Código (ej: P001)" required>
+                <input type="text" id="prodCode" placeholder="Código (ej: PROD-001)" required>
                 <input type="text" id="prodName" placeholder="Nombre Producto" required>
                 <input type="number" id="prodPrice" placeholder="Precio ($)" required min="0">
                 <input type="number" id="prodStock" placeholder="Stock" required min="0">
                 <input type="number" id="prodCriticalStock" placeholder="Stock Crítico" required min="0">
-                <button type="submit" class="btn-save">Guardar Producto</button>
+
+                <select id="prodCategory" required
+                    style="width: 100%; padding: 12px 14px; background-color: #0b0b0f; color: white; border: 1px solid #25252d; border-radius: 5px; font-family: 'Montserrat', sans-serif; font-size: 13px; outline: none;">
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    <option value="juegos">Juegos de mesa</option>
+                    <option value="accesorios">Accesorios</option>
+                    <option value="consolas">Consolas</option>
+                    <option value="computadores">Computadores</option>
+                    <option value="sillas">Sillas</option>
+                    <option value="mouse">Mouse</option>
+                    <option value="mousepad">Mousepad</option>
+                    <option value="poleras">Poleras</option>
+                    <option value="polerones">Polerones</option>
+                    <option value="servicio">Servicio técnico</option>
+                </select>
+
+                <div style="display: flex; flex-direction: column; gap: 5px; grid-column: span 3;">
+                    <label style="font-size: 13px; color: #b8b8c2;">Imagen del Producto:</label>
+                    <input type="file" id="prodImageFile" accept="image/*" required
+                        style="color: #fff; background: #0b0b0f; padding: 8px; border: 1px solid #25252d; border-radius: 4px;">
+                </div>
+
+                <button type="submit" class="btn-save" style="grid-column: span 3;">Guardar Producto</button>
             </form>
 
             <table class="crud-table">
@@ -67,4 +91,5 @@
 
     <script src="../js/admin.js"></script>
 </body>
+
 </html>
